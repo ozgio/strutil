@@ -2,14 +2,32 @@ String Utilities for Go
 =======================
 
 ## Functions
-- ToSnakeCase
-- ToCamelCase 
-- SplitCamelCase
-- Wordwrap
-- Indent
+- Align
+- AlignCenter
+- AlignLeft
+- AlignRight
+- Box
 - Center
+- CountWords
+- CustomBox
+- ExpandTabs
+- Indent
+- MapLines
 - Pad
 - PadLeft
 - PadRight
-- Reverse
+- RemoveAccents
 - ReplaceAllToOne
+- Reverse
+- Slugify
+- SplitCamelCase
+- ToCamelCase 
+- ToSnakeCase
+- UnicodeSubstring
+- Wordwrap
+
+
+## TODO
+- Documetation
+- CI Integration
+- Add function
