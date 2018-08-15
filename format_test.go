@@ -1,42 +1,11 @@
 package strutil
 
 import (
+	"strings"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 )
-
-func TestWordwrap(t *testing.T) {
-	tests := []struct {
-		colLen   int
-		input    string
-		expected string
-	}{
-
-		{0, "Lorem ipsum dolor sit amet", "Lorem ipsum dolor sit amet"},
-		{15, "Lorem ipsum\ndolor\nsit amet", "Lorem ipsum\ndolor\nsit amet"},
-		{15, "Lorem ipsum dolor sit amet", "Lorem ipsum\ndolor sit amet"},
-		{15, "Lorem ipsum, dolor sit amet.", "Lorem ipsum,\ndolor sit amet."},
-		{15, "Lorem ipsum, dolor sit amet.\n", "Lorem ipsum,\ndolor sit amet.\n"},
-		{15, "\nLorem ipsum, dolor sit amet.\n", "\nLorem ipsum,\ndolor sit amet.\n"},
-		{15, "\n   Lorem ipsum, dolor sit amet.\n", "\nLorem ipsum,\ndolor sit amet.\n"},
-		{1, "Lorem ipsum, dolor sit amet", "Lorem\nipsum,\ndolor\nsit\namet"},
-		{15, "Το Lorem Ipsum είναι απλά ένα κείμενο χωρίς", "Το Lorem Ipsum\nείναι απλά ένα\nκείμενο χωρίς"},
-		{15, "", ""},
-		{15, "                        ", ""},
-		{15, "Lorem ipsum   dolor sit amet", "Lorem ipsum\ndolor sit amet"},
-		{15, "Lorem ipsum,   dolor sit amet.", "Lorem ipsum,\ndolor sit amet."},
-		{15, "   Lorem ipsum,   dolor sit amet.", "Lorem ipsum,\ndolor sit amet."},
-		{15, "Lorem ipsum,dolor sit amet.", "Lorem ipsum,\ndolor sit amet."},
-		//{15, "Lorem ipsum,dolor sit amet.   ", "Lorem ipsum,\ndolor sit amet."},
-	}
-
-	for i, test := range tests {
-		output := Wordwrap(test.input, test.colLen)
-		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
-	}
-
-}
 
 func TestIndent(t *testing.T) {
 	tests := []struct {
@@ -163,6 +132,116 @@ func TestCenter(t *testing.T) {
 
 	for i, test := range tests {
 		output := Center(test.input, test.width)
+		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
+	}
+}
+
+func TestMapLines(t *testing.T) {
+	tests := []struct {
+		input    string
+		fn       func(string) string
+		expected string
+	}{
+		{"", strings.ToUpper, ""},
+		{"\n\n", strings.ToUpper, "\n\n"},
+		{"Lorem\nIpsum", strings.ToUpper, "LOREM\nIPSUM"},
+	}
+
+	for i, test := range tests {
+		output := MapLines(test.input, test.fn)
+		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
+	}
+}
+
+func TestAlignLeft(t *testing.T) {
+	tests := []struct {
+		input    string
+		expected string
+	}{
+		{"    lorem", "lorem"},
+		{"   lorem\n    ipsum", "lorem\nipsum"},
+		{"  lorem  \n  ipsum  \n", "lorem  \nipsum  \n"},
+	}
+
+	for i, test := range tests {
+		output := AlignLeft(test.input)
+		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
+	}
+}
+
+func TestAlignRight(t *testing.T) {
+	tests := []struct {
+		input    string
+		width    int
+		expected string
+	}{
+		{"    lorem", 10, "     lorem"},
+		{"   lorem\n    ipsum", 10, "     lorem\n     ipsum"},
+		{"  lorem  \n  ipsum  \n", 10, "     lorem\n     ipsum\n"},
+		{"  lorem  \n  ipsum  \n", 1, "lorem\nipsum\n"},
+	}
+
+	for i, test := range tests {
+		output := AlignRight(test.input, test.width)
+		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
+	}
+}
+
+func TestAlignCenter(t *testing.T) {
+	tests := []struct {
+		input    string
+		width    int
+		expected string
+	}{
+		{"", 10, ""},
+		{"lorem", 10, "  lorem   "},
+		{"lorem\nipsum", 10, "  lorem   \n  ipsum   "},
+		{"    lorem", 10, "  lorem   "},
+		{"   lorem\n    ipsum", 10, "  lorem   \n  ipsum   "},
+		{"  lorem  \n  ipsum  \n", 10, "  lorem   \n  ipsum   \n"},
+		{"  lorem  \n  ipsum  \n", 1, "lorem\nipsum\n"},
+	}
+
+	for i, test := range tests {
+		output := AlignCenter(test.input, test.width)
+		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
+	}
+}
+
+func TestAlign(t *testing.T) {
+	tests := []struct {
+		input    string
+		width    int
+		typ      string
+		expected string
+	}{
+		{"  lorem  ", 10, AlignTypeLeft, "lorem  "},
+		{"  lorem  ", 10, AlignTypeRight, "     lorem"},
+		{"  lorem  ", 10, AlignTypeCenter, "  lorem   "},
+		{"  lorem  ", 10, "", "lorem  "},
+	}
+
+	for i, test := range tests {
+		output := Align(test.input, test.typ, test.width)
+		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
+	}
+}
+
+func TestExpandTabs(t *testing.T) {
+	tests := []struct {
+		input    string
+		count    int
+		expected string
+	}{
+		{"", 2, ""},
+		{"\t", 0, ""},
+		{"\t\n\t\n", 2, "  \n  \n"},
+		{"\t\t", 2, "    "},
+		{"\tlorem\n\tipsum\n", 2, "  lorem\n  ipsum\n"},
+	}
+
+	for i, test := range tests {
+		output := ExpandTabs(test.input, test.count)
 		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
 	}
 }

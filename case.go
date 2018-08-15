@@ -1,6 +1,7 @@
 package strutil
 
 import (
+	"regexp"
 	"strings"
 	"unicode"
 )
@@ -63,4 +64,25 @@ func SplitCamelCase(str string) []string {
 		words = append(words, string(runes[start:]))
 	}
 	return words
+}
+
+var nonAlphnumRegex *regexp.Regexp = regexp.MustCompile("[^a-z0-9]")
+var multiSpaceRegex *regexp.Regexp = regexp.MustCompile("[ ]{2,}")
+
+func Slugify(str string) string {
+	return SlugifySpecial(str, "-")
+}
+
+func SlugifySpecial(str string, sep string) string {
+	str, _, err := RemoveAccents(str)
+	if err != nil {
+		return ""
+	}
+	str = strings.ToLower(str)
+	str = nonAlphnumRegex.ReplaceAllString(str, " ")
+	str = strings.TrimSpace(str)
+	str = multiSpaceRegex.ReplaceAllString(str, " ")
+	str = strings.Replace(str, " ", sep, -1)
+
+	return str
 }
