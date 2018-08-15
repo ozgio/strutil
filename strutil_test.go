@@ -55,6 +55,9 @@ func TestRemoveAccents(t *testing.T) {
 		{"yağmur", "yagmur"},
 		{"résumé", "resume"},
 		{"çınar", "cinar"},
+		{"ÄØääkkönen", "AOaakkonen"},
+		{"£ $ ä", "£ $ a"},
+		{"ßąàáäâãåæăćčĉęèéëêĝĥìíïîĵłľńňòóöőôõðøśșşšŝťțţŭùúüűûñÿýçżźž", "ssaaaaaaaaaccceeeeeghiiiijllnnoooooooossssstttuuuuuunyyczzz"}, //taken from github.com/epeli/underscore.string
 	}
 
 	for i, test := range tests {
@@ -82,7 +85,7 @@ func TestCountWords(t *testing.T) {
 	}
 }
 
-func TestUnicodeSubstring(t *testing.T) {
+func TestSubstring(t *testing.T) {
 	tests := []struct {
 		input     string
 		start     int
@@ -101,10 +104,10 @@ func TestUnicodeSubstring(t *testing.T) {
 	for i, test := range tests {
 		if test.mustPanic {
 			assert.Panicsf(t, func() {
-				_ = UnicodeSubstring(test.input, test.start, test.end)
+				_ = Substring(test.input, test.start, test.end)
 			}, "Test case %d is not successful\n", i)
 		} else {
-			output := UnicodeSubstring(test.input, test.start, test.end)
+			output := Substring(test.input, test.start, test.end)
 			assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
 		}
 	}

@@ -34,7 +34,15 @@ func ReplaceAllToOne(str string, from []string, to string) string {
 
 //SpecialAccentReplacer is string.Replacer for removing accents for special
 //characters like Turkish "ı" or "İ"
-var SpecialAccentReplacer = strings.NewReplacer("ı", "i", "İ", "I")
+var SpecialAccentReplacer = strings.NewReplacer(
+	"ı", "i",
+	"İ", "I",
+	"ð", "o",
+	"ø", "o",
+	"Ø", "O",
+	"ß", "ss",
+	"ł", "l",
+	"æ", "a")
 
 //RemoveAccents removes accents from the letters. The resuting string only has the letters from English alphabet
 //taken from https://blog.golang.org/normalization
@@ -62,7 +70,7 @@ func CountWords(str string) int {
 	return count
 }
 
-func UnicodeSubstring(str string, start int, end int) string {
+func Substring(str string, start int, end int) string {
 	runes := []rune(str)
 	if start < 0 || start > len(runes)-1 {
 		panic(fmt.Sprintf("start (%d) is out of range (%d)", start, len(runes)))

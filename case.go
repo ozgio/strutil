@@ -13,7 +13,7 @@ func ToSnakeCase(str string) string {
 
 func ToCamelCase(str string) string {
 	str = strings.TrimSpace(str)
-	if len(str) < 2 {
+	if UTF8Len(str) < 2 {
 		return str
 	}
 
@@ -34,7 +34,7 @@ func ToCamelCase(str string) string {
 
 func SplitCamelCase(str string) []string {
 	str = strings.TrimSpace(str)
-	if len(str) < 2 {
+	if UTF8Len(str) < 2 {
 		return []string{str}
 	}
 	var prev rune
