@@ -17,28 +17,28 @@ func getPadString(length int, pad string) string {
 	if len(pad) == 0 || length <= 0 {
 		return ""
 	}
-	allPad := strings.Repeat(pad, length/len(pad))
-	remaining := length - len(allPad)
+	allPad := strings.Repeat(pad, length/UTF8Len(pad))
+	remaining := length - UTF8Len(allPad)
 	return allPad + pad[:remaining]
 }
 
 func PadLeft(str string, width int, pad string) string {
-	return getPadString(width-len(str), pad) + str
+	return getPadString(width-UTF8Len(str), pad) + str
 }
 
 func PadRight(str string, width int, pad string) string {
-	return str + getPadString(width-len(str), pad)
+	return str + getPadString(width-UTF8Len(str), pad)
 }
 
 func Pad(str string, width int, leftPad string, rightPad string) string {
 	switch {
-	case len(leftPad) == 0:
+	case UTF8Len(leftPad) == 0:
 		return PadRight(str, width, rightPad)
-	case len(rightPad) == 0:
+	case UTF8Len(rightPad) == 0:
 		return PadLeft(str, width, leftPad)
 	}
-	padLen := (width - len(str)) / 2
-	return getPadString(padLen, leftPad) + str + getPadString(width-len(str)-padLen, rightPad)
+	padLen := (width - UTF8Len(str)) / 2
+	return getPadString(padLen, leftPad) + str + getPadString(width-UTF8Len(str)-padLen, rightPad)
 }
 
 func Center(str string, width int) string {

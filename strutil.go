@@ -3,6 +3,7 @@ package strutil
 import (
 	"fmt"
 	"strings"
+	"unicode/utf8"
 
 	"unicode"
 
@@ -72,3 +73,5 @@ func UnicodeSubstring(str string, start int, end int) string {
 	}
 	return string(runes[start:end])
 }
+
+var UTF8Len = utf8.RuneCountInString
