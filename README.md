@@ -1,5 +1,6 @@
 String Utilities for Go
 =======================
+[![CircleCI](https://circleci.com/gh/ozgio/strutil.svg?style=svg)](https://circleci.com/gh/ozgio/strutil)
 
 "strutil" provides UTF8 safe string functions for go applications. 
 
