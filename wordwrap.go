@@ -5,6 +5,7 @@ import "strings"
 //Wordwrap wraps the given string str based on colLen as max line width.
 //It never breaks the words, even if it is longer than the colLen. It breaks
 //the string on " ", ",", ".", ":", ";"
+//TODO add an option for breaking words longer than colLen
 func Wordwrap(str string, colLen int) string {
 	if colLen == 0 {
 		return str

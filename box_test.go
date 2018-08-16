@@ -1,6 +1,7 @@
 package strutil
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -22,4 +23,31 @@ func TestBox(t *testing.T) {
 		output, _ := Box(test.input, test.width, test.align)
 		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
 	}
+}
+
+func ExampleBox() {
+	output, _ := Box("Hello World", 20, AlignTypeCenter)
+	fmt.Println(output)
+	// Output:
+	//┌──────────────────┐
+	//│   Hello World    │
+	//└──────────────────┘
+}
+
+func ExampleBox_Long() {
+	text := `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`
+	output, _ := Box(text, 30, AlignTypeLeft)
+	fmt.Println(output)
+	// Output:
+	// ┌────────────────────────────┐
+	// │Lorem ipsum dolor sit amet, │
+	// │consectetur adipiscing elit,│
+	// │sed do eiusmod tempor       │
+	// │incididunt ut labore et     │
+	// │dolore magna aliqua. Ut enim│
+	// │ad minim veniam, quis       │
+	// │nostrud exercitation ullamco│
+	// │laboris nisi ut aliquip ex  │
+	// │ea commodo consequat.       │
+	// └────────────────────────────┘
 }

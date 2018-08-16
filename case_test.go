@@ -1,6 +1,7 @@
 package strutil
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -24,6 +25,11 @@ func TestToSnakeCase(t *testing.T) {
 	}
 }
 
+func ExampleToSnakeCase() {
+	fmt.Println(ToSnakeCase("Lorem Ipsum"))
+	// Outputs: "lorem_ipsum"
+}
+
 func TestToCamelCase(t *testing.T) {
 	tests := []struct {
 		input    string
@@ -41,6 +47,11 @@ func TestToCamelCase(t *testing.T) {
 		output := ToCamelCase(test.input)
 		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
 	}
+}
+
+func ExampleToCamelCase() {
+	fmt.Println(ToCamelCase("long live motörhead"))
+	//Outputs: "longLiveMotörhead"
 }
 
 func TestSplitCamelCase(t *testing.T) {
@@ -66,6 +77,11 @@ func TestSplitCamelCase(t *testing.T) {
 		output := SplitCamelCase(test.input)
 		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
 	}
+}
+
+func ExampleSplitCamelCase() {
+	fmt.Println(SplitCamelCase("binaryJSONAbstractWriter"))
+	// Outputs: ss[]string{"binary", "JSON", "Abstract", "Writer"}}
 }
 
 func TestSlugifySpecial(t *testing.T) {
@@ -108,4 +124,9 @@ func TestSlugify(t *testing.T) {
 		output := Slugify(test.input)
 		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
 	}
+}
+
+func ExampleSlugify() {
+	fmt.Println(Slugify("We löve Motörhead"))
+	// Outputs: we-love-motorhead
 }

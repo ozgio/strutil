@@ -61,10 +61,8 @@ var SimpleBox9Slice Box9Slice = Box9Slice{
 
 // CustomBox creates a frame with "content" in it. Characters in frame is specified by "chars".
 // "align" sets the alignment of the content. It must be one of the strutil.AlignType* constants.
-// There are 2 premade Box9Slice objects: strutil.DefaultBox9Slice or strutil.SimpleBox9Slice
-//
-// CustomBox doesn't wrap the lines so its better to call strutil.WordWrap before CustomBox for
-// larger texts
+// There are 2 premade Box9Slice objects: strutil.DefaultBox9Slice or strutil.SimpleBox9Slice.
+// CustomBox wrap the lines with strutil.WordWrap before placing it.
 //
 // Example:
 //     CustomBox("Hello World", 20, AligntTypeCenter, SimpleBox9Slice)
@@ -82,6 +80,8 @@ func CustomBox(content string, width int, align string, chars Box9Slice) (string
 	if topInsideWidth < 1 || middleInsideWidth < 1 || bottomInsideWidth < 1 {
 		return "", errors.New("there is not enough width")
 	}
+
+	content = Wordwrap(content, middleInsideWidth)
 
 	buff.WriteString(chars.TopLeft)
 	buff.WriteString(strings.Repeat(chars.Top, topInsideWidth))

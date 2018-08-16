@@ -1,71 +1,11 @@
 package strutil
 
 import (
-	"strings"
+	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 )
-
-func TestReverse(t *testing.T) {
-	tests := []struct {
-		input    string
-		expected string
-	}{
-		{"", ""},
-		{"abc", "cba"},
-		{"a", "a"},
-		{"çınar", "ranıç"},
-		{"    yağmur", "rumğay    "},
-	}
-
-	for i, test := range tests {
-		output := Reverse(test.input)
-		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
-	}
-}
-
-func TestReplaceAllToOne(t *testing.T) {
-	tests := []struct {
-		input    string
-		from     []string
-		to       string
-		expected string
-	}{
-		{"", []string{"a"}, "b", ""},
-		{"lorem", []string{""}, "-", "-l-o-r-e-m-"},
-		{"lorem", []string{"lo", "em"}, "", "r"},
-		{"a b c a c f", []string{" ", "a", "b"}, "-", "----c---c-f"},
-	}
-
-	for i, test := range tests {
-		output := ReplaceAllToOne(test.input, test.from, test.to)
-		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
-	}
-}
-
-func TestRemoveAccents(t *testing.T) {
-	tests := []struct {
-		input    string
-		expected string
-	}{
-		{"", ""},
-		{"lorem", "lorem"},
-		{"motörhead", "motorhead"},
-		{"žůžo", "zuzo"},
-		{"yağmur", "yagmur"},
-		{"résumé", "resume"},
-		{"çınar", "cinar"},
-		{"ÄØääkkönen", "AOaakkonen"},
-		{"£ $ ä", "£ $ a"},
-		{"ßąàáäâãåæăćčĉęèéëêĝĥìíïîĵłľńňòóöőôõðøśșşšŝťțţŭùúüűûñÿýçżźž", "ssaaaaaaaaaccceeeeeghiiiijllnnoooooooossssstttuuuuuunyyczzz"}, //taken from github.com/epeli/underscore.string
-	}
-
-	for i, test := range tests {
-		output, _, _ := RemoveAccents(test.input)
-		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
-	}
-}
 
 func TestCountWords(t *testing.T) {
 	tests := []struct {
@@ -86,6 +26,11 @@ func TestCountWords(t *testing.T) {
 	}
 }
 
+func ExampleCountWords() {
+	fmt.Println(CountWords("It is not known exactly!"))
+	// Outputs: 5
+}
+
 func TestSubstring(t *testing.T) {
 	tests := []struct {
 		input     string
@@ -99,6 +44,7 @@ func TestSubstring(t *testing.T) {
 		{"lorem", 0, 5, "lorem", false},
 		{"lorem", 0, 10, "", true},
 		{"Υπάρχουν", 1, 4, "πάρ", false},
+		{"Υπάρχουν", 1, -1, "πάρχουν", false},
 		{"žůžo", 1, 4, "ůžo", false},
 	}
 
@@ -115,19 +61,12 @@ func TestSubstring(t *testing.T) {
 
 }
 
-func TestMapLines(t *testing.T) {
-	tests := []struct {
-		input    string
-		fn       func(string) string
-		expected string
-	}{
-		{"", strings.ToUpper, ""},
-		{"\n\n", strings.ToUpper, "\n\n"},
-		{"Lorem\nIpsum", strings.ToUpper, "LOREM\nIPSUM"},
-	}
+func ExampleSubstring() {
+	fmt.Println(Substring("Υπάρχουν", 1, 4))
+	// Outputs: πάρ
+}
 
-	for i, test := range tests {
-		output := MapLines(test.input, test.fn)
-		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
-	}
+func ExampleSubstring_tillTheEnd() {
+	fmt.Println(Substring("Υπάρχουν", 1, -1))
+	// Outputs: πάρχουν
 }

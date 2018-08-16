@@ -1,6 +1,7 @@
 package strutil
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -35,5 +36,13 @@ func TestWordwrap(t *testing.T) {
 		output := Wordwrap(test.input, test.colLen)
 		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
 	}
+
+}
+
+func ExampleWordWrap() {
+	fmt.Println(Wordwrap("Lorem ipsum, dolor sit amet.", 15))
+	// Outputs:
+	// Lorem ipsum,
+	// dolor sit amet.
 
 }

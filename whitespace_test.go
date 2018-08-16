@@ -1,6 +1,7 @@
 package strutil
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -24,6 +25,13 @@ func TestIndent(t *testing.T) {
 		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
 
 	}
+}
+
+func ExampleIndent() {
+	fmt.Println(Indent("Lorem ipsum\ndolor sit amet", " > "))
+	// Outputs:
+	//  > Lorem ipsum
+	//  > dolor sit amet
 }
 
 func TestGetPadString(t *testing.T) {
@@ -71,6 +79,11 @@ func TestPadLeft(t *testing.T) {
 	}
 }
 
+func ExamplePadLeft() {
+	fmt.Println(PadLeft("lorem", 10, "-"))
+	// Outputs: -----lorem
+}
+
 func TestPadRight(t *testing.T) {
 	tests := []struct {
 		width    int
@@ -94,6 +107,10 @@ func TestPadRight(t *testing.T) {
 	}
 }
 
+func ExamplePadRight() {
+	fmt.Println(PadRight("lorem", 10, "-"))
+	// Outputs: lorem-----
+}
 func TestPad(t *testing.T) {
 	tests := []struct {
 		width    int
@@ -116,6 +133,11 @@ func TestPad(t *testing.T) {
 	}
 }
 
+func ExamplePad() {
+	fmt.Println(Pad("lorem", 9, "-", "-"))
+	// Outputs: --lorem--
+}
+
 func TestCenter(t *testing.T) {
 	tests := []struct {
 		width    int
@@ -133,6 +155,11 @@ func TestCenter(t *testing.T) {
 		output := Center(test.input, test.width)
 		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
 	}
+}
+
+func ExampleCenter() {
+	fmt.Println("'" + Center("lorem", 9) + "'")
+	// Outputs: '  lorem  '
 }
 
 func TestAlignLeft(t *testing.T) {
