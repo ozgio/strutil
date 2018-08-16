@@ -52,7 +52,7 @@ func Center(str string, width int) string {
 	return Pad(str, width, " ", " ")
 }
 
-// AlignLeft aligns str to left. It basically trims the left side
+// AlignLeft aligns str to the left. It basically trims the left side
 // of the string on every line
 func AlignLeft(str string) string {
 	return MapLines(str, func(line string) string {
@@ -60,7 +60,7 @@ func AlignLeft(str string) string {
 	})
 }
 
-// AlignRight aligns str to right. It actually trims and left pads all the lines
+// AlignRight aligns str to the right. It actually trims and left pads all the lines
 // in the text with space to the size of width.
 func AlignRight(str string, width int) string {
 	return MapLines(str, func(line string) string {
@@ -91,7 +91,7 @@ const (
 	AlignTypeRight  = "right"
 )
 
-// Align aligns string to the "typ" which shoudl be one of
+// Align aligns string to the "typ" which should be one of
 //  - strutil.AlignTypeCenter
 //  - strutil.AlignTypeLeft
 //  - strutil.AlignTypeRight

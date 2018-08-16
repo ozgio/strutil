@@ -178,6 +178,13 @@ func TestAlignLeft(t *testing.T) {
 	}
 }
 
+func ExampleAlignLeft() {
+	fmt.Println(AlignLeft("   lorem\n    ipsum"))
+	// Outputs:
+	// lorem
+	// ipsum
+}
+
 func TestAlignRight(t *testing.T) {
 	tests := []struct {
 		input    string
@@ -194,6 +201,13 @@ func TestAlignRight(t *testing.T) {
 		output := AlignRight(test.input, test.width)
 		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
 	}
+}
+
+func ExampleAlignRight() {
+	fmt.Println(AlignRight("  lorem  \n  ipsum  ", 10))
+	// Outputs:
+	//      lorem
+	//      ipsum
 }
 
 func TestAlignCenter(t *testing.T) {
@@ -217,6 +231,13 @@ func TestAlignCenter(t *testing.T) {
 	}
 }
 
+func ExampleAlignCenter() {
+	fmt.Println(AlignCenter("lorem\nipsum", 10))
+	// Outputs:
+	//   lorem
+	//   ipsum
+}
+
 func TestAlign(t *testing.T) {
 	tests := []struct {
 		input    string
@@ -234,6 +255,13 @@ func TestAlign(t *testing.T) {
 		output := Align(test.input, test.typ, test.width)
 		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
 	}
+}
+
+func ExampleAlign() {
+	fmt.Println(Align("  lorem  \n  ipsum  ", AlignTypeRight, 10))
+	// Outputs:
+	//      lorem
+	//      ipsum
 }
 
 func TestExpandTabs(t *testing.T) {

@@ -22,9 +22,10 @@ type Box9Slice struct {
 // DefaultBox9Slice defines the character object to use with "CustomBox".
 // It is used as Box9Slice object in "Box" function.
 //
-// Example:
-//     CustomBox("Hello World", 20, AligntTypeCenter, DefaultBox9Slice)
-// 	   Outputs:
+// Usage:
+// CustomBox("Hello World", 20, AligntTypeCenter, DefaultBox9Slice)
+//
+// Outputs:
 // ┌──────────────────┐
 // │   Hello World    │
 // └──────────────────┘
@@ -42,9 +43,10 @@ var DefaultBox9Slice Box9Slice = Box9Slice{
 // SimpleBox9Slice defines a character set to use with CustomBox. It uses
 // only simple ASCII chaaracters
 //
-// Example:
-//     CustomBox("Hello World", 20, AligntTypeCenter, SimpleBox9Slice)
-// 	   Outputs:
+// Usage:
+// CustomBox("Hello World", 20, AligntTypeCenter, SimpleBox9Slice)
+//
+// Outputs:
 // +------------------+
 // |   Hello World    |
 // +------------------+
@@ -59,18 +61,13 @@ var SimpleBox9Slice Box9Slice = Box9Slice{
 	TopLeft:     "+",
 }
 
-// CustomBox creates a frame with "content" in it. Characters in frame is specified by "chars".
+// CustomBox creates a frame with "content" in it. Characters in the frame is specified by "chars".
 // "align" sets the alignment of the content. It must be one of the strutil.AlignType* constants.
 // There are 2 premade Box9Slice objects: strutil.DefaultBox9Slice or strutil.SimpleBox9Slice.
 // CustomBox wrap the lines with strutil.WordWrap before placing it.
 //
-// Example:
-//     CustomBox("Hello World", 20, AligntTypeCenter, SimpleBox9Slice)
-//
-// 	   Output:
-// ┌──────────────────┐
-// │   Hello World    │
-// └──────────────────┘
+// Usage:
+// CustomBox("Hello World", 20, AligntTypeCenter, SimpleBox9Slice)
 func CustomBox(content string, width int, align string, chars Box9Slice) (string, error) {
 	var buff strings.Builder
 
@@ -111,13 +108,8 @@ func CustomBox(content string, width int, align string, chars Box9Slice) (string
 // define characters in the frame. "align" sets the alignment of the content.
 // It must be one of the strutil.AlignType* constants.
 //
-// Example:
-//     Box("Hello World", 20, AligntTypeCenter)
-//
-// 	   Output:
-//     +------------------+
-//     |   Hello World    |
-//     +------------------+
+// Usage:
+// Box("Hello World", 20, AligntTypeCenter)
 func Box(content string, width int, align string) (string, error) {
 	return CustomBox(content, width, align, DefaultBox9Slice)
 }

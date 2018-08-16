@@ -105,6 +105,11 @@ func TestSlugifySpecial(t *testing.T) {
 	}
 }
 
+func ExampleSlugifySpecial() {
+	fmt.Println(SlugifySpecial("We löve Motörhead", "_"))
+	// Outputs: we_love_motorhead
+}
+
 func TestSlugify(t *testing.T) {
 	tests := []struct {
 		input    string

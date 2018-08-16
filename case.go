@@ -103,9 +103,9 @@ func Slugify(str string) string {
 	return SlugifySpecial(str, "-")
 }
 
-// SlugifySpecial converts a string to a slug with a special delimeter.
-// It removes accents, converts to lower case, remove the characters
-// which are not letters or numbers and replaces spaces with delimeter.
+// SlugifySpecial converts a string to a slug with the delimeter.
+// It removes accents, converts string to lower case, remove the characters
+// which are not letters or numbers and replaces spaces with the delimeter.
 func SlugifySpecial(str string, delimeter string) string {
 	str, _, err := RemoveAccents(str)
 	if err != nil {
