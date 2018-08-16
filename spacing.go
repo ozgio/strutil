@@ -4,8 +4,8 @@ import (
 	"strings"
 )
 
-//Indent indents every line of string str with the string left
-//For empty strings it returns "". Empty lines are indented too.
+// Indent indents every line of string str with the left parameter
+// For empty strings it returns "". Empty lines are indented too.
 func Indent(str string, left string) string {
 	if str == "" {
 		return str
@@ -22,14 +22,20 @@ func getPadString(length int, pad string) string {
 	return allPad + pad[:remaining]
 }
 
+// PadLeft left pads a string str with "pad". The string is padded to
+// the size of width.
 func PadLeft(str string, width int, pad string) string {
 	return getPadString(width-UTF8Len(str), pad) + str
 }
 
+// PadRight right pads a string str with "pad". The string is padded to
+// the size of width.
 func PadRight(str string, width int, pad string) string {
 	return str + getPadString(width-UTF8Len(str), pad)
 }
 
+// Pad left and right pads a string str with leftPad and rightPad. The string
+// is padded to the size of width.
 func Pad(str string, width int, leftPad string, rightPad string) string {
 	switch {
 	case UTF8Len(leftPad) == 0:
@@ -41,24 +47,21 @@ func Pad(str string, width int, leftPad string, rightPad string) string {
 	return getPadString(padLen, leftPad) + str + getPadString(width-UTF8Len(str)-padLen, rightPad)
 }
 
+// Center centers the text by adding spaces to the left and right.
 func Center(str string, width int) string {
 	return Pad(str, width, " ", " ")
 }
 
-func MapLines(str string, fn func(string) string) string {
-	arr := strings.Split(str, "\n")
-	for i := 0; i < len(arr); i++ {
-		arr[i] = fn(arr[i])
-	}
-	return strings.Join(arr, "\n")
-}
-
+// AlignLeft aligns str to left. It basically trims the left side
+// of the string on every line
 func AlignLeft(str string) string {
 	return MapLines(str, func(line string) string {
 		return strings.TrimLeft(line, " ")
 	})
 }
 
+// AlignRight aligns str to right. It actually trims and left pads all the lines
+// in the text with space to the size of width.
 func AlignRight(str string, width int) string {
 	return MapLines(str, func(line string) string {
 		line = strings.Trim(line, " ")
@@ -69,6 +72,8 @@ func AlignRight(str string, width int) string {
 	})
 }
 
+// AlignCenter centers str. It trims and then centers all the lines in the
+// text with space
 func AlignCenter(str string, width int) string {
 	return MapLines(str, func(line string) string {
 		line = strings.Trim(line, " ")
@@ -79,12 +84,17 @@ func AlignCenter(str string, width int) string {
 	})
 }
 
+// Align type to use with align function
 const (
 	AlignTypeCenter = "center"
 	AlignTypeLeft   = "left"
 	AlignTypeRight  = "right"
 )
 
+// Align aligns string to the "typ" which shoudl be one of
+//  - strutil.AlignTypeCenter
+//  - strutil.AlignTypeLeft
+//  - strutil.AlignTypeRight
 func Align(str string, typ string, width int) string {
 	switch typ {
 	case AlignTypeCenter:
@@ -96,6 +106,7 @@ func Align(str string, typ string, width int) string {
 	}
 }
 
+//ExpandTabs convert tabs the spaces with the length of count
 func ExpandTabs(str string, count int) string {
 	return strings.Replace(str, "\t", strings.Repeat(" ", count), -1)
 }

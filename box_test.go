@@ -13,9 +13,9 @@ func TestBox(t *testing.T) {
 		align    string
 		expected string
 	}{
-		{"Hello World", 20, AlignTypeCenter, "+------------------+\n|   Hello World    |\n+------------------+"},
-		{"\nHello World\n", 20, AlignTypeCenter, "+------------------+\n|                  |\n|   Hello World    |\n|                  |\n+------------------+"},
-		{"résumé", 10, AlignTypeLeft, "+--------+\n|résumé  |\n+--------+"},
+		{"Hello World", 20, AlignTypeCenter, "┌──────────────────┐\n│   Hello World    │\n└──────────────────┘"},
+		{"\nHello World\n", 20, AlignTypeCenter, "┌──────────────────┐\n│                  │\n│   Hello World    │\n│                  │\n└──────────────────┘"},
+		{"résumé", 10, AlignTypeLeft, "┌────────┐\n│résumé  │\n└────────┘"},
 	}
 
 	for i, test := range tests {

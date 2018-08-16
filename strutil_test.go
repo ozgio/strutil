@@ -1,6 +1,7 @@
 package strutil
 
 import (
+	"strings"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -112,4 +113,21 @@ func TestSubstring(t *testing.T) {
 		}
 	}
 
+}
+
+func TestMapLines(t *testing.T) {
+	tests := []struct {
+		input    string
+		fn       func(string) string
+		expected string
+	}{
+		{"", strings.ToUpper, ""},
+		{"\n\n", strings.ToUpper, "\n\n"},
+		{"Lorem\nIpsum", strings.ToUpper, "LOREM\nIPSUM"},
+	}
+
+	for i, test := range tests {
+		output := MapLines(test.input, test.fn)
+		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
+	}
 }

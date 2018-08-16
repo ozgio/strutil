@@ -28,6 +28,10 @@ String Utilities for Go
 
 
 ## TODO
+- Fix bugs
+- Optimization
 - Documetation
 - CI Integration
-- Add function
+- Add functions:
+  - Splice
+  - Truncate
