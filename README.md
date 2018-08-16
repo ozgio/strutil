@@ -36,9 +36,18 @@ For documentation with examples see [GoDoc](https://godoc.org/github.com/ozgio/s
 
 ## Install 
 
+Prequsities:
+- Go 1.10+
+
 Install with 
 
     go get github.com/ozgio/strutil
+
+Dependencies:
+
+    go get golang.org/x/text/runes
+	go get golang.org/x/text/transform
+	go get golang.org/x/text/unicode/norm
 
 Import
 
