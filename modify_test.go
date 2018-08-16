@@ -29,7 +29,7 @@ func TestReverse(t *testing.T) {
 
 func ExampleReverse() {
 	fmt.Println(Reverse("επαγγελματίες"))
-	// Outputs: ςείταμλεγγαπε
+	// Output: ςείταμλεγγαπε
 }
 
 func TestReplaceAllToOne(t *testing.T) {
@@ -53,7 +53,7 @@ func TestReplaceAllToOne(t *testing.T) {
 
 func ExampleReplaceAllToOne() {
 	fmt.Println(ReplaceAllToOne("lorem", []string{"lo", "em"}, "x"))
-	// Outputs: xrx
+	// Output: xrx
 }
 
 func TestRemoveAccents(t *testing.T) {
@@ -80,8 +80,9 @@ func TestRemoveAccents(t *testing.T) {
 }
 
 func ExampleRemoveAccents() {
-	fmt.Println(RemoveAccents("ßąàáäâãåæăćčĉęèéëêĝĥìíïîĵłľńňòóöőôõðøśșşšŝťțţŭùúüűûñÿýçżźž"))
-	// Outputs: ssaaaaaaaaaccceeeeeghiiiijllnnoooooooossssstttuuuuuunyyczzz
+	output, _, _ := RemoveAccents("ßąàáäâãåæăćčĉęèéëêĝĥìíïîĵłľńňòóöőôõðøśșşšŝťțţŭùúüűûñÿýçżźž")
+	fmt.Println(output)
+	// Output: ssaaaaaaaaaccceeeeeghiiiijllnnoooooooossssstttuuuuuunyyczzz
 }
 
 func TestMapLines(t *testing.T) {
@@ -103,7 +104,7 @@ func TestMapLines(t *testing.T) {
 
 func ExampleMapLines() {
 	fmt.Println(MapLines("Lorem\nIpsum", strings.ToUpper))
-	// Outputs:
+	// Output:
 	// LOREM
 	// IPSUM
 }

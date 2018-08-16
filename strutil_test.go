@@ -28,7 +28,7 @@ func TestCountWords(t *testing.T) {
 
 func ExampleCountWords() {
 	fmt.Println(CountWords("It is not known exactly!"))
-	// Outputs: 5
+	// Output: 5
 }
 
 func TestSubstring(t *testing.T) {
@@ -63,10 +63,10 @@ func TestSubstring(t *testing.T) {
 
 func ExampleSubstring() {
 	fmt.Println(Substring("Υπάρχουν", 1, 4))
-	// Outputs: πάρ
+	// Output: πάρ
 }
 
 func ExampleSubstring_tillTheEnd() {
 	fmt.Println(Substring("Υπάρχουν", 1, -1))
-	// Outputs: πάρχουν
+	// Output: πάρχουν
 }

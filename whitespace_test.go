@@ -2,6 +2,7 @@ package strutil
 
 import (
 	"fmt"
+	"strings"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -29,7 +30,7 @@ func TestIndent(t *testing.T) {
 
 func ExampleIndent() {
 	fmt.Println(Indent("Lorem ipsum\ndolor sit amet", " > "))
-	// Outputs:
+	// Output:
 	//  > Lorem ipsum
 	//  > dolor sit amet
 }
@@ -81,7 +82,7 @@ func TestPadLeft(t *testing.T) {
 
 func ExamplePadLeft() {
 	fmt.Println(PadLeft("lorem", 10, "-"))
-	// Outputs: -----lorem
+	// Output: -----lorem
 }
 
 func TestPadRight(t *testing.T) {
@@ -109,7 +110,7 @@ func TestPadRight(t *testing.T) {
 
 func ExamplePadRight() {
 	fmt.Println(PadRight("lorem", 10, "-"))
-	// Outputs: lorem-----
+	// Output: lorem-----
 }
 func TestPad(t *testing.T) {
 	tests := []struct {
@@ -135,7 +136,7 @@ func TestPad(t *testing.T) {
 
 func ExamplePad() {
 	fmt.Println(Pad("lorem", 9, "-", "-"))
-	// Outputs: --lorem--
+	// Output: --lorem--
 }
 
 func TestCenter(t *testing.T) {
@@ -159,7 +160,7 @@ func TestCenter(t *testing.T) {
 
 func ExampleCenter() {
 	fmt.Println("'" + Center("lorem", 9) + "'")
-	// Outputs: '  lorem  '
+	// Output: '  lorem  '
 }
 
 func TestAlignLeft(t *testing.T) {
@@ -180,7 +181,7 @@ func TestAlignLeft(t *testing.T) {
 
 func ExampleAlignLeft() {
 	fmt.Println(AlignLeft("   lorem\n    ipsum"))
-	// Outputs:
+	// Output:
 	// lorem
 	// ipsum
 }
@@ -205,7 +206,7 @@ func TestAlignRight(t *testing.T) {
 
 func ExampleAlignRight() {
 	fmt.Println(AlignRight("  lorem  \n  ipsum  ", 10))
-	// Outputs:
+	// Output:
 	//      lorem
 	//      ipsum
 }
@@ -232,10 +233,11 @@ func TestAlignCenter(t *testing.T) {
 }
 
 func ExampleAlignCenter() {
-	fmt.Println(AlignCenter("lorem\nipsum", 10))
-	// Outputs:
-	//   lorem
-	//   ipsum
+	text := AlignCenter("lorem\nipsum", 9)
+	fmt.Println(strings.Replace(text, " ", ".", -1))
+	// Output:
+	// ..lorem..
+	// ..ipsum..
 }
 
 func TestAlign(t *testing.T) {
@@ -259,7 +261,7 @@ func TestAlign(t *testing.T) {
 
 func ExampleAlign() {
 	fmt.Println(Align("  lorem  \n  ipsum  ", AlignTypeRight, 10))
-	// Outputs:
+	// Output:
 	//      lorem
 	//      ipsum
 }

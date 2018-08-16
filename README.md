@@ -8,31 +8,31 @@ For documentation with examples see [GoDoc](https://godoc.org/github.com/ozgio/s
 
 ## Functions
 
-| Function          | Desctiption                                           |
-|-------------------|-------------------------------------------------------|
-| Align             | Aligns the text to spesified side                     |
-| AlignCenter       | Aligns the text to the center                         |
-| AlignLeft         | Aligns the text to the left                           |
-| AlignRight        | Aligns the text to the right                          |
-| Box               | Draws a frame around the string with default chars    |
-| Center            | Centers the string                                    |
-| CountWords        | Count the words in the string                         |
-| CustomBox         | Draws a frame aroud the string with spesified chars   |
-| ExpandTabs        | Converts tabs to spaces                               |
-| Indent            | Indents the string                                    |
-| MapLines          | Runs spesified function on every line of the text     |
-| Pad               | Left and right pads the strings                       |
-| PadLeft           | Left pads the string                                  |
-| PadRight          | Right pads the string                                 |
-| RemoveAccents     | Remove accents in the string                          |
-| ReplaceAllToOne   | Replace all strings in a text to a spesified string   |
-| Reverse           | Reverses the string                                   |
-| Slugify           | Converts the string to a slug                         |
-| SplitCamelCase    | Splits the words in a camelCase string                |
-| ToCamelCase       | Converts the string to camelCase                      |
-| ToSnakeCase       | Converts the string to snake_Case                     |
-| Substring         | Returns a part of the string                          |
-| Wordwrap          | Wraps the lines in the text                           |
+| Function                                                                  | Desctiption                                           |
+|---------------------------------------------------------------------------|-------------------------------------------------------|
+| [Align](https://godoc.org/github.com/ozgio/strutil#Align)                 | Aligns the text to the spesified side                 |
+| [AlignCenter](https://godoc.org/github.com/ozgio/strutil#AlignCenter)     | Aligns the text to the center                         |
+| [AlignLeft](https://godoc.org/github.com/ozgio/strutil#AlignLeft)         | Aligns the text to the left                           |
+| [AlignRight](https://godoc.org/github.com/ozgio/strutil#AlignRight)       | Aligns the text to the right                          |
+| [Box](https://godoc.org/github.com/ozgio/strutil#Box)                     | Draws a frame around the string with default chars    |
+| [Center](https://godoc.org/github.com/ozgio/strutil#Center)               | Centers the string                                    |
+| [CountWords](https://godoc.org/github.com/ozgio/strutil#CountWords)       | Count the words in the string                         |
+| [CustomBox](https://godoc.org/github.com/ozgio/strutil#CustomBox)         | Draws a frame aroud the string with spesified chars   |
+| [ExpandTabs](https://godoc.org/github.com/ozgio/strutil#ExpandTabs)       | Converts tabs to spaces                               |
+| [Indent](https://godoc.org/github.com/ozgio/strutil#Indent)               | Indents the string                                    |
+| [MapLines](https://godoc.org/github.com/ozgio/strutil#MapLines)           | Runs spesified function on every line of the text     |
+| [Pad](https://godoc.org/github.com/ozgio/strutil#Pad)                     | Left and right pads the strings                       |
+| [PadLeft](https://godoc.org/github.com/ozgio/strutil#PadLeft)             | Left pads the string                                  |
+| [PadRight](https://godoc.org/github.com/ozgio/strutil#PadRight)           | Right pads the string                                 |
+| [RemoveAccents](https://godoc.org/github.com/ozgio/strutil#RemoveAccents) | Remove accents in the string                          |
+| [ReplaceAllToOne](https://godoc.org/github.com/ozgio/strutil#ReplaceAllToOne) | Replace all substrings in the text to the spesified string   |
+| [Reverse](https://godoc.org/github.com/ozgio/strutil#Reverse)             | Reverses the string                                   |
+| [Slugify](https://godoc.org/github.com/ozgio/strutil#Slugify)             | Converts the string to a slug                         |
+| [SplitCamelCase](https://godoc.org/github.com/ozgio/strutil#SplitCamelCase)   | Splits the words in a camelCase string            |
+| [ToCamelCase](https://godoc.org/github.com/ozgio/strutil#ToCamelCase)     | Converts the string to camelCase                      |
+| [ToSnakeCase](https://godoc.org/github.com/ozgio/strutil#ToSnakeCase)     | Converts the string to snake_Case                     |
+| [Substring](https://godoc.org/github.com/ozgio/strutil#Substring)         | Returns a part of the string                          |
+| [Wordwrap](https://godoc.org/github.com/ozgio/strutil#Wordwrap)           | Wraps the lines in the text                           |
 
 ## Install 
 

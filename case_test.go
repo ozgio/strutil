@@ -27,7 +27,7 @@ func TestToSnakeCase(t *testing.T) {
 
 func ExampleToSnakeCase() {
 	fmt.Println(ToSnakeCase("Lorem Ipsum"))
-	// Outputs: "lorem_ipsum"
+	// Output: lorem_ipsum
 }
 
 func TestToCamelCase(t *testing.T) {
@@ -51,7 +51,7 @@ func TestToCamelCase(t *testing.T) {
 
 func ExampleToCamelCase() {
 	fmt.Println(ToCamelCase("long live motörhead"))
-	//Outputs: "longLiveMotörhead"
+	//Output: longLiveMotörhead
 }
 
 func TestSplitCamelCase(t *testing.T) {
@@ -81,7 +81,7 @@ func TestSplitCamelCase(t *testing.T) {
 
 func ExampleSplitCamelCase() {
 	fmt.Println(SplitCamelCase("binaryJSONAbstractWriter"))
-	// Outputs: ss[]string{"binary", "JSON", "Abstract", "Writer"}}
+	// Output: [binary JSON Abstract Writer]
 }
 
 func TestSlugifySpecial(t *testing.T) {
@@ -107,7 +107,7 @@ func TestSlugifySpecial(t *testing.T) {
 
 func ExampleSlugifySpecial() {
 	fmt.Println(SlugifySpecial("We löve Motörhead", "_"))
-	// Outputs: we_love_motorhead
+	// Output: we_love_motorhead
 }
 
 func TestSlugify(t *testing.T) {
@@ -133,5 +133,5 @@ func TestSlugify(t *testing.T) {
 
 func ExampleSlugify() {
 	fmt.Println(Slugify("We löve Motörhead"))
-	// Outputs: we-love-motorhead
+	// Output: we-love-motorhead
 }

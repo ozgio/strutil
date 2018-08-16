@@ -55,7 +55,7 @@ func ExampleBox_long() {
 func ExampleCustomBox() {
 	output, _ := CustomBox("Hello World", 20, AlignTypeCenter, DefaultBox9Slice)
 	fmt.Println(output)
-	// Outputs:
+	// Output:
 	//┌──────────────────┐
 	//│   Hello World    │
 	//└──────────────────┘
