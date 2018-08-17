@@ -166,24 +166,26 @@ func ExampleCenter() {
 func TestAlignLeft(t *testing.T) {
 	tests := []struct {
 		input    string
+		width    int
 		expected string
 	}{
-		{"    lorem", "lorem"},
-		{"   lorem\n    ipsum", "lorem\nipsum"},
-		{"  lorem  \n  ipsum  \n", "lorem  \nipsum  \n"},
+		{"    lorem", 10, "lorem     "},
+		{"   lorem\n    ipsum", 10, "lorem     \nipsum     "},
+		{"  lorem  \n  ipsum  \n", 10, "lorem     \nipsum     \n          "},
 	}
 
 	for i, test := range tests {
-		output := AlignLeft(test.input)
+		output := AlignLeft(test.input, test.width)
 		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
 	}
 }
 
 func ExampleAlignLeft() {
-	fmt.Println(AlignLeft("   lorem\n    ipsum"))
+	aligned := AlignLeft("   lorem\n    ipsum", 10)
+	fmt.Println(strings.Replace(aligned, " ", ".", -1))
 	// Output:
-	// lorem
-	// ipsum
+	// lorem.....
+	// ipsum.....
 }
 
 func TestAlignRight(t *testing.T) {
@@ -194,8 +196,8 @@ func TestAlignRight(t *testing.T) {
 	}{
 		{"    lorem", 10, "     lorem"},
 		{"   lorem\n    ipsum", 10, "     lorem\n     ipsum"},
-		{"  lorem  \n  ipsum  \n", 10, "     lorem\n     ipsum\n"},
-		{"  lorem  \n  ipsum  \n", 1, "lorem\nipsum\n"},
+		{"  lorem  \n  ipsum  \n", 10, "     lorem\n     ipsum\n          "},
+		{"  lorem  \n  ipsum  \n", 1, "lorem\nipsum\n "},
 	}
 
 	for i, test := range tests {
@@ -217,13 +219,13 @@ func TestAlignCenter(t *testing.T) {
 		width    int
 		expected string
 	}{
-		{"", 10, ""},
+		{"", 10, "          "},
 		{"lorem", 10, "  lorem   "},
 		{"lorem\nipsum", 10, "  lorem   \n  ipsum   "},
 		{"    lorem", 10, "  lorem   "},
 		{"   lorem\n    ipsum", 10, "  lorem   \n  ipsum   "},
-		{"  lorem  \n  ipsum  \n", 10, "  lorem   \n  ipsum   \n"},
-		{"  lorem  \n  ipsum  \n", 1, "lorem\nipsum\n"},
+		{"  lorem  \n  ipsum  \n", 10, "  lorem   \n  ipsum   \n          "},
+		{"  lorem  \n  ipsum  \n", 1, "lorem\nipsum\n "},
 	}
 
 	for i, test := range tests {
@@ -247,10 +249,10 @@ func TestAlign(t *testing.T) {
 		typ      string
 		expected string
 	}{
-		{"  lorem  ", 10, AlignTypeLeft, "lorem  "},
+		{"  lorem  ", 10, AlignTypeLeft, "lorem     "},
 		{"  lorem  ", 10, AlignTypeRight, "     lorem"},
 		{"  lorem  ", 10, AlignTypeCenter, "  lorem   "},
-		{"  lorem  ", 10, "", "lorem  "},
+		{"  lorem  ", 10, "", "lorem     "},
 	}
 
 	for i, test := range tests {

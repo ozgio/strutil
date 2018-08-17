@@ -52,11 +52,12 @@ func Center(str string, width int) string {
 	return Pad(str, width, " ", " ")
 }
 
-// AlignLeft aligns str to the left. It basically trims the left side
-// of the string on every line
-func AlignLeft(str string) string {
+// AlignLeft aligns str to the left. It actually trims and right pads all the lines
+// in the text with space to the size of width.
+func AlignLeft(str string, width int) string {
 	return MapLines(str, func(line string) string {
-		return strings.TrimLeft(line, " ")
+		line = strings.TrimLeft(line, " ")
+		return PadRight(line, width, " ")
 	})
 }
 
@@ -65,9 +66,6 @@ func AlignLeft(str string) string {
 func AlignRight(str string, width int) string {
 	return MapLines(str, func(line string) string {
 		line = strings.Trim(line, " ")
-		if line == "" {
-			return ""
-		}
 		return PadLeft(line, width, " ")
 	})
 }
@@ -77,9 +75,6 @@ func AlignRight(str string, width int) string {
 func AlignCenter(str string, width int) string {
 	return MapLines(str, func(line string) string {
 		line = strings.Trim(line, " ")
-		if line == "" {
-			return ""
-		}
 		return Center(line, width)
 	})
 }
@@ -102,7 +97,7 @@ func Align(str string, typ string, width int) string {
 	case AlignTypeRight:
 		return AlignRight(str, width)
 	default:
-		return AlignLeft(str)
+		return AlignLeft(str, width)
 	}
 }
 
