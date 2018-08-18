@@ -1,7 +1,6 @@
 package strutil
 
 import (
-	"regexp"
 	"strings"
 	"unicode"
 )
@@ -90,12 +89,6 @@ func SplitCamelCase(str string) []string {
 	return words
 }
 
-// nonAlphnumRegex is a regexp for selecting non alphanumeric characters
-var nonAlphnumRegex *regexp.Regexp = regexp.MustCompile("[^a-z0-9]")
-
-// multiSpaceRegex is a regexp for select contigous spaces
-var multiSpaceRegex *regexp.Regexp = regexp.MustCompile("[ ]{2,}")
-
 // Slugify converts a string to a slug which is useful in URLs, filenames.
 // It removes accents, converts to lower case, remove the characters which
 // are not letters or numbers and replaces spaces with "-".
@@ -111,11 +104,36 @@ func SlugifySpecial(str string, delimeter string) string {
 	if err != nil {
 		return ""
 	}
-	str = strings.ToLower(str)
-	str = nonAlphnumRegex.ReplaceAllString(str, " ")
-	str = strings.TrimSpace(str)
-	str = multiSpaceRegex.ReplaceAllString(str, " ")
-	str = strings.Replace(str, " ", delimeter, -1)
 
-	return str
+	delBytes := []byte(delimeter)
+
+	n := make([]byte, 0, len(str))
+	isPrevSpace := false
+	for _, r := range str {
+		//toLowerCase
+		if r >= 'A' && r <= 'Z' {
+			r -= 'A' - 'a'
+		}
+
+		//replace non-alphanum chars with delimeter
+		switch {
+		case (r >= 'a' && r <= 'z') || (r >= '0' && r <= '9'):
+			n = append(n, byte(int8(r)))
+			isPrevSpace = false
+		case !isPrevSpace:
+			n = append(n, delBytes...)
+			fallthrough
+		default:
+			isPrevSpace = true
+		}
+	}
+
+	//trim right
+	ln := len(n)
+	ld := len(delimeter)
+	if ln >= ld && string(n[ln-ld:]) == delimeter {
+		n = n[:ln-ld]
+	}
+
+	return string(n)
 }
