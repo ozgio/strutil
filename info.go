@@ -69,7 +69,7 @@ const (
 )
 
 // wordPuncRunes are punctuations which can be inside words: O'Neil, micro-service
-var wordPuncRunes = [...]rune{[]rune("'")[0], []rune("-")[0], []rune("_")[0]}
+var wordPuncRunes = [...]rune{rune('\''), rune('-'), rune('_')}
 
 func inWordPuncRune(r rune) bool {
 	for _, p := range wordPuncRunes {

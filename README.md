@@ -54,9 +54,8 @@ Import
     import "github.com/ozgio/strutil"
 
 ## TODO
-- Fix problems in some edge cases
-- Optimize and improve code
-- CI Integration
+- Improve tests, more test cases are needed
 - Add functions:
   - Splice
   - Truncate
+  - Random (for passwords)
