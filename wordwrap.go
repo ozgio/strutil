@@ -2,67 +2,124 @@ package strutil
 
 import "strings"
 
-//Wordwrap wraps the given string str based on colLen as max line width.
-//It never breaks the words, even if it is longer than the colLen. It breaks
-//the string on " ", ",", ".", ":", ";"
-//TODO add an option for breaking words longer than colLen
-func Wordwrap(str string, colLen int) string {
-	if colLen == 0 {
-		return str
-	}
-	runes := []rune(str)
-	var buff strings.Builder
-	var prevChar string
-	l := len(runes)
+var newLine = rune('\n')
+var space = rune(' ')
 
-	//left trim
-	startOfLine := findRealStartOfLine(runes, 0)
-	var endOfLine int
-
-	for i := startOfLine; i < l; i++ {
-		c := string(runes[i])
-
-		switch {
-		case c == "\n":
-			buff.WriteString(string(runes[startOfLine : i+1]))
-			startOfLine = findRealStartOfLine(runes, i+1)
-			endOfLine = startOfLine
-
-		case i-startOfLine > colLen && endOfLine != startOfLine:
-			buff.WriteString(string(runes[startOfLine:endOfLine]))
-			buff.WriteString("\n")
-			startOfLine = findRealStartOfLine(runes, endOfLine)
-			endOfLine = startOfLine
-
-		case c == " " && prevChar != " ":
-			endOfLine = i
-		case c == "," || c == "." || c == ":" || c == ";":
-			endOfLine = i + 1
-		}
-
-		if startOfLine >= len(runes) {
-			break
-		}
-		if startOfLine > i {
-			i = startOfLine
-		}
-
-		//index (i) may be changed in the loop, so do not use "c" directly
-		prevChar = string(runes[i])
-	}
-	if startOfLine < len(runes) {
-		buff.WriteString(string(runes[startOfLine:]))
-	}
-
-	return buff.String()
+// strBuffer is a special string builder, which can track rune count, written
+// mainly for WordWrap
+type strBuffer struct {
+	//internal array to store string
+	buf []byte
+	//count of runes.
+	length int
 }
 
-//findRealStartOfLine is a helper function for Wordwrap. In practice it is used
-//to trim the left side of the runes. It gets startOfLine as beginning index
-//and returns new index if there are spaces after startOfLine
-func findRealStartOfLine(runes []rune, startOfLine int) int {
-	for ; startOfLine < len(runes) && string(runes[startOfLine]) == " "; startOfLine++ {
+func (b *strBuffer) WriteString(str string, length int) *strBuffer {
+	b.buf = append(b.buf, str...)
+	b.length += length
+	return b
+}
+
+func (b *strBuffer) WriteRune(r rune) *strBuffer {
+	b.buf = append(b.buf, string(r)...)
+	b.length++
+	return b
+}
+
+func (b *strBuffer) AppendStrBuffer(n strBuffer) *strBuffer {
+	b.buf = append(b.buf, n.buf...)
+	b.length += n.length
+	return b
+}
+
+func (b *strBuffer) NewLine() *strBuffer {
+	b.WriteString("\n", 1)
+	return b
+}
+
+func (b *strBuffer) Reset() *strBuffer {
+	b.buf = b.buf[:0]
+	b.length = 0
+	return b
+}
+
+func (b *strBuffer) LeftTrim() *strBuffer {
+	for i, c := range b.buf {
+		if c != ' ' {
+			b.buf = b.buf[i:]
+			b.length -= i
+			return b
+		}
 	}
 
-	return startOfLine
+	b.buf = b.buf[:0]
+	b.length = 0
+	return b
+}
+
+// Wordwrap wraps the given string str based on colLen as max line width.
+// if breakLongWords is true, it breaks the words which are longer than colLen.
+//
+// Notes:
+// - Wordwrap doesn't trim the lines, except it trims the left side of the new line
+// created by breaking a long line.
+// - Tabs should be converted to space before using WordWrap.
+func Wordwrap(str string, colLen int, breakLongWords bool) string {
+	if colLen == 0 || str == "" || len(str) < colLen {
+		return str
+	}
+	var buff strings.Builder
+	var line strBuffer
+	var word strBuffer
+
+	runeIndex := -1
+	runeWritten := false
+	var r rune
+
+	for _, r = range str {
+		runeIndex++
+		runeWritten = false
+
+		if r == newLine {
+			line.AppendStrBuffer(word).NewLine()
+			buff.Write(line.buf)
+			line.Reset()
+			word.Reset()
+			continue
+		}
+		if r == space {
+			line.AppendStrBuffer(word)
+			word.Reset()
+		}
+
+		if line.length+word.length+1 > colLen {
+			if line.length > 0 {
+				runeWritten = true
+				word.WriteRune(r)
+				line.NewLine()
+				buff.Write(line.buf)
+				line.Reset()
+				word.LeftTrim()
+			} else if breakLongWords {
+				line.AppendStrBuffer(word).NewLine()
+				buff.Write(line.buf)
+				line.Reset()
+				word.Reset()
+			}
+		}
+
+		if !runeWritten {
+			word.WriteRune(r)
+		}
+	}
+
+	line.AppendStrBuffer(word)
+	buff.Write(line.buf)
+
+	res := buff.String()
+	if r != newLine && len(res) > 0 && res[len(res)-1:] == "\n" {
+		res = res[:len(res)-1]
+	}
+
+	return res
 }

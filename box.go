@@ -75,10 +75,10 @@ func CustomBox(content string, width int, align string, chars Box9Slice) (string
 	var middleInsideWidth = width - UTF8Len(chars.Left) - UTF8Len(chars.Right)
 	var bottomInsideWidth = width - UTF8Len(chars.BottomLeft) - UTF8Len(chars.BottomRight)
 	if topInsideWidth < 1 || middleInsideWidth < 1 || bottomInsideWidth < 1 {
-		return "", errors.New("there is not enough width")
+		return "", errors.New("no enough width")
 	}
 
-	content = Wordwrap(content, middleInsideWidth)
+	content = Wordwrap(content, middleInsideWidth, true)
 
 	buff.WriteString(chars.TopLeft)
 	buff.WriteString(strings.Repeat(chars.Top, topInsideWidth))
