@@ -24,6 +24,7 @@ For documentation with examples see [GoDoc](https://godoc.org/github.com/ozgio/s
 | [Pad](https://godoc.org/github.com/ozgio/strutil#Pad)                     | Left and right pads the strings                       |
 | [PadLeft](https://godoc.org/github.com/ozgio/strutil#PadLeft)             | Left pads the string                                  |
 | [PadRight](https://godoc.org/github.com/ozgio/strutil#PadRight)           | Right pads the string                                 |
+| [Random](https://godoc.org/github.com/ozgio/strutil#Random)               | Creates a random string from a character set          |
 | [RemoveAccents](https://godoc.org/github.com/ozgio/strutil#RemoveAccents) | Remove accents in the string                          |
 | [ReplaceAllToOne](https://godoc.org/github.com/ozgio/strutil#ReplaceAllToOne) | Replace all substrings in the text to the spesified string   |
 | [Reverse](https://godoc.org/github.com/ozgio/strutil#Reverse)             | Reverses the string                                   |
@@ -32,7 +33,8 @@ For documentation with examples see [GoDoc](https://godoc.org/github.com/ozgio/s
 | [ToCamelCase](https://godoc.org/github.com/ozgio/strutil#ToCamelCase)     | Converts the string to camelCase                      |
 | [ToSnakeCase](https://godoc.org/github.com/ozgio/strutil#ToSnakeCase)     | Converts the string to snake_Case                     |
 | [Substring](https://godoc.org/github.com/ozgio/strutil#Substring)         | Returns a part of the string                          |
-| [Summary](https://godoc.org/github.com/ozgio/strutil#Summary)             | Cut the text to the length                            |
+| [Summary](https://godoc.org/github.com/ozgio/strutil#Summary)             | Cuts the text to the length                           |
+| [Splice](https://godoc.org/github.com/ozgio/strutil#Splice)               | Replaces a part of the string                         |
 | [Wordwrap](https://godoc.org/github.com/ozgio/strutil#Wordwrap)           | Wraps the lines in the text                           |
 
 ## Install 
@@ -56,6 +58,3 @@ Import
 
 ## TODO
 - Improve tests, more test cases are needed
-- Add functions:
-  - Splice
-  - Random (for passwords)
