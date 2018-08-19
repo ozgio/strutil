@@ -13,15 +13,22 @@ func TestBox(t *testing.T) {
 		width    int
 		align    string
 		expected string
+		err      bool
 	}{
-		{"Hello World", 20, AlignTypeCenter, "┌──────────────────┐\n│   Hello World    │\n└──────────────────┘"},
-		{"\nHello World\n", 20, AlignTypeCenter, "┌──────────────────┐\n│                  │\n│   Hello World    │\n│                  │\n└──────────────────┘"},
-		{"résumé", 10, AlignTypeLeft, "┌────────┐\n│résumé  │\n└────────┘"},
+		{"Hello World", 20, AlignTypeCenter, "┌──────────────────┐\n│   Hello World    │\n└──────────────────┘", false},
+		{"\nHello World\n", 20, AlignTypeCenter, "┌──────────────────┐\n│                  │\n│   Hello World    │\n│                  │\n└──────────────────┘", false},
+		{"résumé", 10, AlignTypeLeft, "┌────────┐\n│résumé  │\n└────────┘", false},
+		{"Hello World", 2, AlignTypeLeft, "", true},
+		{"Hello\n\n\nWorld", 10, AlignTypeLeft, "┌────────┐\n│Hello   │\n│        │\n│        │\n│World   │\n└────────┘", false},
 	}
 
 	for i, test := range tests {
-		output, _ := Box(test.input, test.width, test.align)
-		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
+		output, err := Box(test.input, test.width, test.align)
+		if test.err {
+			assert.Errorf(t, err, "Test case %d is not successful\n", i)
+		} else {
+			assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
+		}
 	}
 }
 

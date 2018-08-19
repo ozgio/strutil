@@ -68,8 +68,6 @@ func SplitCamelCase(str string) []string {
 	for i, r := range runes {
 		if i != 0 {
 			switch {
-			case unicode.IsLetter(r) && unicode.IsDigit(r):
-				fallthrough
 			case unicode.IsDigit(r) && unicode.IsLetter(prev):
 				fallthrough
 			case unicode.IsUpper(r) && unicode.IsLower(prev):
