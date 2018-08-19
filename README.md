@@ -32,6 +32,7 @@ For documentation with examples see [GoDoc](https://godoc.org/github.com/ozgio/s
 | [ToCamelCase](https://godoc.org/github.com/ozgio/strutil#ToCamelCase)     | Converts the string to camelCase                      |
 | [ToSnakeCase](https://godoc.org/github.com/ozgio/strutil#ToSnakeCase)     | Converts the string to snake_Case                     |
 | [Substring](https://godoc.org/github.com/ozgio/strutil#Substring)         | Returns a part of the string                          |
+| [Summary](https://godoc.org/github.com/ozgio/strutil#Summary)             | Cut the text to the length                            |
 | [Wordwrap](https://godoc.org/github.com/ozgio/strutil#Wordwrap)           | Wraps the lines in the text                           |
 
 ## Install 
@@ -57,5 +58,4 @@ Import
 - Improve tests, more test cases are needed
 - Add functions:
   - Splice
-  - Truncate
   - Random (for passwords)
