@@ -77,7 +77,7 @@ func Wordwrap(str string, colLen int, breakLongWords bool) string {
 	var word strBuffer
 
 	runeIndex := -1
-	runeWritten := false
+	var runeWritten bool
 	var r rune
 
 	for _, r = range str {

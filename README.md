@@ -1,8 +1,11 @@
 String Utilities for Go
 =======================
-[![CircleCI](https://circleci.com/gh/ozgio/strutil.svg?style=svg)](https://circleci.com/gh/ozgio/strutil)
+[![CircleCI](https://circleci.com/gh/ozgio/strutil.svg?style=svg)](https://circleci.com/gh/ozgio/strutil) 
+[![GoReportCard](https://goreportcard.com/badge/github.com/ozgio/strutil)](https://goreportcard.com/report/github.com/ozgio/strutil)
+[![GoDocs](https://godoc.org/github.com/ozgio/strutil?status.svg)](https://godoc.org/github.com/ozgio/strutil)
 
-"strutil" provides UTF8 safe string functions for go applications. 
+
+"strutil" provides fast, UTF8 safe string functions for go applications. 
 
 For documentation with examples see [GoDoc](https://godoc.org/github.com/ozgio/strutil)
 
@@ -57,4 +60,4 @@ Import
     import "github.com/ozgio/strutil"
 
 ## TODO
-- Improve tests, more test cases are needed
+- Improve tests. More test cases are needed

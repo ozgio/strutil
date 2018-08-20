@@ -20,7 +20,7 @@ func ToSnakeCase(str string) string {
 
 // ToCamelCase converts str into camelCase formatted string after trimming it.
 // It doesn't change the cases of letters except the first letters of the words.
-// ToCamelCase also doesn't remove punctions or such characters and it seperates
+// ToCamelCase also doesn't remove punctions or such characters and it separates
 // words only with " "
 //
 // Example:
