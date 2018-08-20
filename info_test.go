@@ -14,8 +14,8 @@ func TestCountWords(t *testing.T) {
 	}{
 		{"", 0},
 		{"    ", 0},
-		{"he/she/it", 3}, //FIXME should be 3
-		{"...,", 0},      //FIXME should be 3
+		{"he/she/it", 3},
+		{"...,", 0},
 		{`It is not known exactly when the text obtained its current standard form; it may have been as late as the 1960s. Dr. Richard McClintock, a Latin scholar who was the publications director at Hampden–Sydney College in Virginia, discovered the source of the passage sometime before 1982 while searching for instances of the Latin word "consectetur" ("that [he/she/it] pursue", subjunctive), rarely used in classical literature.[2][a] The physical source of the lorem ipsum text may be the 1914 Loeb Classical Library Edition of the De Finibus, where the Latin text, presented on the left-hand (even) pages, breaks off on page 34 with "Neque porro quisquam est qui do-" and continues on page 36 with "lorem ipsum ...", suggesting that the galley type of that page was mixed up to make the dummy text seen today.`, 138},
 		{`Υπάρχουν αρκετές παραλλαγές, μερικές από τις οποίες δεν έχουν καμία σχέση με το "κλασικό" κείμενο. `, 15},
 	}

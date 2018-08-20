@@ -26,9 +26,10 @@ type Box9Slice struct {
 // CustomBox("Hello World", 20, AligntTypeCenter, DefaultBox9Slice)
 //
 // Outputs:
-// ┌──────────────────┐
-// │   Hello World    │
-// └──────────────────┘
+//   ┌──────────────────┐
+//   │   Hello World    │
+//   └──────────────────┘
+// </code>
 var DefaultBox9Slice Box9Slice = Box9Slice{
 	Top:         "─",
 	TopRight:    "┐",
@@ -47,9 +48,9 @@ var DefaultBox9Slice Box9Slice = Box9Slice{
 // CustomBox("Hello World", 20, AligntTypeCenter, SimpleBox9Slice)
 //
 // Outputs:
-// +------------------+
-// |   Hello World    |
-// +------------------+
+//   +------------------+
+//   |   Hello World    |
+//   +------------------+
 var SimpleBox9Slice Box9Slice = Box9Slice{
 	Top:         "-",
 	TopRight:    "+",

@@ -6,7 +6,9 @@ String Utilities for Go
 [![GoDocs](https://godoc.org/github.com/ozgio/strutil?status.svg)](https://godoc.org/github.com/ozgio/strutil)
 
 
-"strutil" provides fast, UTF8 safe string functions for go applications. 
+"strutil" provides string functions for go applications. 
+
+In some functions it may not work as expected in non-latin alphabets like cyrillic, chinese, etc. Also there may be some language spesific edge cases that aren't supported well. Any help on those areas would be appreciated.
 
 For documentation with examples see [GoDoc](https://godoc.org/github.com/ozgio/strutil)
 
@@ -21,7 +23,7 @@ For documentation with examples see [GoDoc](https://godoc.org/github.com/ozgio/s
 | [Box](https://godoc.org/github.com/ozgio/strutil#Box)                     | Draws a frame around the string with default chars    |
 | [Center](https://godoc.org/github.com/ozgio/strutil#Center)               | Centers the string                                    |
 | [CountWords](https://godoc.org/github.com/ozgio/strutil#CountWords)       | Count the words in the string                         |
-| [CustomBox](https://godoc.org/github.com/ozgio/strutil#CustomBox)         | Draws a frame aroud the string with spesified chars   |
+| [CustomBox](https://godoc.org/github.com/ozgio/strutil#CustomBox)         | Draws a frame aroud the string with specified chars   |
 | [ExpandTabs](https://godoc.org/github.com/ozgio/strutil#ExpandTabs)       | Converts tabs to spaces                               |
 | [Indent](https://godoc.org/github.com/ozgio/strutil#Indent)               | Indents the string                                    |
 | [MapLines](https://godoc.org/github.com/ozgio/strutil#MapLines)           | Runs spesified function on every line of the text     |
@@ -62,3 +64,6 @@ Import
 
 ## TODO
 - Improve tests. More test cases are needed
+- Test for different languages
+- Handle "\r\n"
+- Improve whitespace and punctiation support

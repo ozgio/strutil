@@ -35,7 +35,7 @@ func TestBox(t *testing.T) {
 func ExampleBox() {
 	output, _ := Box("Hello World", 20, AlignTypeCenter)
 	fmt.Println(output)
-	// Outputs:
+	// Output:
 	//┌──────────────────┐
 	//│   Hello World    │
 	//└──────────────────┘
@@ -45,7 +45,7 @@ func ExampleBox_long() {
 	text := `Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`
 	output, _ := Box(text, 30, AlignTypeLeft)
 	fmt.Println(output)
-	// Outputs:
+	// Output:
 	// ┌────────────────────────────┐
 	// │Lorem ipsum dolor sit amet, │
 	// │consectetur adipiscing elit,│
