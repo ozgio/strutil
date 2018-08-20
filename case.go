@@ -11,8 +11,7 @@ import (
 // you should convert them into spaces before calling ToSnakeCase
 //
 // Example:
-//     ToSnakeCase("Snake Case")
-//     //Outputs: snake_case
+//     ToSnakeCase("Snake Case") //Output: snake_case
 func ToSnakeCase(str string) string {
 	str = strings.TrimSpace(strings.ToLower(str))
 	return strings.Replace(str, " ", "_", -1)
@@ -24,10 +23,8 @@ func ToSnakeCase(str string) string {
 // words only with " "
 //
 // Example:
-//     ToCamelCase("camel case")
-//     //Outputs: camelCase
-// 	   ToCamelCase("inside dynaMIC-HTML")
-// 	   //Outputs: insideDynaMIC-HTML
+//     ToCamelCase("camel case") //Output: camelCase
+// 	   ToCamelCase("inside dynaMIC-HTML") //Output: insideDynaMIC-HTML
 func ToCamelCase(str string) string {
 	str = strings.TrimSpace(str)
 	if UTF8Len(str) < 2 {
@@ -52,9 +49,7 @@ func ToCamelCase(str string) string {
 // SplitCamelCase splits and returns words in camelCase format.
 //
 // Example:
-//     SplitCamelCase("loremIpsum")
-//	   //Output
-//     {"lorem", "ipsum"}
+//   SplitCamelCase("loremIpsum") //Output []string{"lorem", "Ipsum"}
 func SplitCamelCase(str string) []string {
 	str = strings.TrimSpace(str)
 	if UTF8Len(str) < 2 {
@@ -90,6 +85,9 @@ func SplitCamelCase(str string) []string {
 // Slugify converts a string to a slug which is useful in URLs, filenames.
 // It removes accents, converts to lower case, remove the characters which
 // are not letters or numbers and replaces spaces with "-".
+//
+// Currently it doesn't support non-latin alphabets. See RemoveAccents for
+// latin alphabet support
 func Slugify(str string) string {
 	return SlugifySpecial(str, "-")
 }
@@ -97,6 +95,9 @@ func Slugify(str string) string {
 // SlugifySpecial converts a string to a slug with the delimeter.
 // It removes accents, converts string to lower case, remove the characters
 // which are not letters or numbers and replaces spaces with the delimeter.
+//
+// Currently it doesn't support non-latin alphabets. See RemoveAccents for
+// latin alphabet support
 func SlugifySpecial(str string, delimeter string) string {
 	str, _, err := RemoveAccents(str)
 	if err != nil {

@@ -47,6 +47,8 @@ var SpecialAccentReplacer = strings.NewReplacer(
 // RemoveAccents removes accents from the letters. The resuting string only has
 // the letters from English alphabet.
 // taken from https://blog.golang.org/normalization
+// It may not be work as expected for some specific letters. Please create an
+// issue for these situations.
 func RemoveAccents(str string) (string, int, error) {
 	str = SpecialAccentReplacer.Replace(str)
 	t := transform.Chain(norm.NFD, runes.Remove(runes.In(unicode.Mn)), norm.NFC)
