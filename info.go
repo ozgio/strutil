@@ -18,20 +18,40 @@ var UTF8Len = utf8.RuneCountInString
 // when the indexes are out of range. String length can be get with
 // UTF8Len function before using Substring
 func Substring(str string, start int, end int) string {
-	runes := []rune(str)
-	size := len(runes)
-	if start < 0 || start > size-1 {
-		panic(fmt.Sprintf("start (%d) is out of range (%d)", start, size))
+	var startByte = -1
+	var runeIndex int
+	if start < 0 || start >= len(str) {
+		panic(fmt.Sprintf("start (%d) is out of range", start))
 	}
-	if end == 0 {
-		return string(runes[start:])
+	if end != 0 && end <= start {
+		panic(fmt.Sprintf("end (%d) cannot be equal to or smaller than start (%d)", end, start))
+	}
+	if end > len(str) {
+		panic(fmt.Sprintf("end (%d) is out of range", end))
 	}
 
-	if end <= start || end > size {
-		panic(fmt.Sprintf("end (%d) is out of range (%d)", end, size))
-
+	for i := range str {
+		if runeIndex == start {
+			startByte = i
+			if end == 0 {
+				return str[startByte:]
+			}
+		}
+		if end != 0 && runeIndex == end {
+			return str[startByte:i]
+		}
+		runeIndex++
 	}
-	return string(runes[start:end])
+
+	if startByte < 0 {
+		panic(fmt.Sprintf("start (%d) is out of range (%d)", start, runeIndex))
+	}
+
+	if end == runeIndex {
+		return str[startByte:]
+	}
+
+	panic(fmt.Sprintf("end (%d) is out of range (%d)", end, runeIndex))
 }
 
 // IsASCII checks if all the characters in string are in standard ASCII table

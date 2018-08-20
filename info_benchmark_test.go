@@ -33,3 +33,15 @@ func BenchmarkWordsUTF8(b *testing.B) {
 		Words(longUTF8BenchmarkText)
 	}
 }
+
+func BenchmarkSubstringShort(b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		Substring("lorem ipsum", 1, 3)
+	}
+}
+
+func BenchmarkSubstringLong(b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		Substring(longUTF8BenchmarkText, 16, 24)
+	}
+}

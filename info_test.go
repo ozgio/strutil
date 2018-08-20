@@ -43,8 +43,12 @@ func TestSubstring(t *testing.T) {
 		{"", 0, 1, "", true},
 		{"lorem", 0, 5, "lorem", false},
 		{"lorem", 0, 10, "", true},
+		{"lorem", -1, 4, "", true},
+		{"lorem", 9, 10, "", true},
+		{"lorem", 4, 3, "", true},
 		{"Υπάρχουν", 1, 4, "πάρ", false},
 		{"Υπάρχουν", 1, 0, "πάρχουν", false},
+		{"Υπάρχουν", 1, 9, "", true},
 		{"žůžo", 1, 4, "ůžo", false},
 	}
 
