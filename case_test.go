@@ -80,8 +80,8 @@ func TestSplitCamelCase(t *testing.T) {
 }
 
 func ExampleSplitCamelCase() {
-	fmt.Println(SplitCamelCase("binaryJSONAbstractWriter"))
-	// Output: [binary JSON Abstract Writer]
+	fmt.Printf("%#v\n", SplitCamelCase("binaryJSONAbstractWriter"))
+	// Output: []string{"binary", "JSON", "Abstract", "Writer"}
 }
 
 func TestSlugifySpecial(t *testing.T) {
