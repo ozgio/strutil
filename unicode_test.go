@@ -74,6 +74,8 @@ func TestSlugify(t *testing.T) {
 		{"žůžo", "zuzo"},
 		{"yağmur    --    yağarken", "yagmur-yagarken"},
 		{"résumé", "resume"},
+		{" - lorem Ipsum - ", "lorem-ipsum"},
+		{"-lorem Ipsum - ", "lorem-ipsum"},
 		{"Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. ", "lorem-ipsum-comes-from-sections-1-10-32-and-1-10-33-of-de-finibus-bonorum-et-malorum-the-extremes-of-good-and-evil-by-cicero-written-in-45-bc"},
 	}
 

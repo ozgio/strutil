@@ -70,7 +70,9 @@ func SlugifySpecial(str string, delimeter string) string {
 			n = append(n, byte(int8(r)))
 			isPrevSpace = false
 		case !isPrevSpace:
-			n = append(n, delBytes...)
+			if len(n) > 0 {
+				n = append(n, delBytes...)
+			}
 			fallthrough
 		default:
 			isPrevSpace = true
