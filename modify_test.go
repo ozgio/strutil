@@ -56,35 +56,6 @@ func ExampleReplaceAllToOne() {
 	// Output: xrx
 }
 
-func TestRemoveAccents(t *testing.T) {
-	tests := []struct {
-		input    string
-		expected string
-	}{
-		{"", ""},
-		{"lorem", "lorem"},
-		{"motörhead", "motorhead"},
-		{"žůžo", "zuzo"},
-		{"yağmur", "yagmur"},
-		{"résumé", "resume"},
-		{"çınar", "cinar"},
-		{"ÄØääkkönen", "AOaakkonen"},
-		{"£ $ ä", "£ $ a"},
-		{"ßąàáäâãåæăćčĉęèéëêĝĥìíïîĵłľńňòóöőôõðøśșşšŝťțţŭùúüűûñÿýçżźž", "ssaaaaaaaaaccceeeeeghiiiijllnnoooooooossssstttuuuuuunyyczzz"}, //taken from github.com/epeli/underscore.string
-	}
-
-	for i, test := range tests {
-		output, _, _ := RemoveAccents(test.input)
-		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
-	}
-}
-
-func ExampleRemoveAccents() {
-	output, _, _ := RemoveAccents("ßąàáäâãåæăćčĉęèéëêĝĥìíïîĵłľńňòóöőôõðøśșşšŝťțţŭùúüűûñÿýçżźž")
-	fmt.Println(output)
-	// Output: ssaaaaaaaaaccceeeeeghiiiijllnnoooooooossssstttuuuuuunyyczzz
-}
-
 func TestMapLines(t *testing.T) {
 	tests := []struct {
 		input    string

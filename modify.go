@@ -3,11 +3,6 @@ package strutil
 import (
 	"fmt"
 	"strings"
-	"unicode"
-
-	"golang.org/x/text/runes"
-	"golang.org/x/text/transform"
-	"golang.org/x/text/unicode/norm"
 )
 
 // Reverse reverses the string
@@ -30,29 +25,6 @@ func ReplaceAllToOne(str string, from []string, to string) string {
 	r := strings.NewReplacer(arr...)
 
 	return r.Replace(str)
-}
-
-// SpecialAccentReplacer is a string.Replacer for removing accents for special
-// characters like Turkish "ı" or "İ"
-var SpecialAccentReplacer = strings.NewReplacer(
-	"ı", "i",
-	"İ", "I",
-	"ð", "o",
-	"ø", "o",
-	"Ø", "O",
-	"ß", "ss",
-	"ł", "l",
-	"æ", "a")
-
-// RemoveAccents removes accents from the letters. The resuting string only has
-// the letters from English alphabet.
-// taken from https://blog.golang.org/normalization
-// It may not be work as expected for some specific letters. Please create an
-// issue for these situations.
-func RemoveAccents(str string) (string, int, error) {
-	str = SpecialAccentReplacer.Replace(str)
-	t := transform.Chain(norm.NFD, runes.Remove(runes.In(unicode.Mn)), norm.NFC)
-	return transform.String(t, str)
 }
 
 // MapLines runs function fn on every line of the string.
