@@ -36,8 +36,17 @@ func RemoveAccents(str string) (string, int, error) {
 // It removes accents, converts to lower case, remove the characters which
 // are not letters or numbers and replaces spaces with "-".
 //
-// Currently it doesn't support non-latin alphabets. See RemoveAccents for
-// latin alphabet support
+// Example:
+//   strutil.Slugify("'We löve Motörhead'") //Output: we-love-motorhead
+//
+// Slugify doesn't support transliteration. You should use a transliteration
+// library before Slugify like github.com/rainycape/unidecode
+//
+// Example:
+//   import "github.com/rainycape/unidecode"
+//
+//   str := unidecode.Unidecode("你好, world!")
+//   strutil.Slugify(str) //Output: ni-hao-world
 func Slugify(str string) string {
 	return SlugifySpecial(str, "-")
 }
@@ -46,8 +55,17 @@ func Slugify(str string) string {
 // It removes accents, converts string to lower case, remove the characters
 // which are not letters or numbers and replaces spaces with the delimeter.
 //
-// Currently it doesn't support non-latin alphabets. See RemoveAccents for
-// latin alphabet support
+// Example:
+//   strutil.SlugifySpecial("'We löve Motörhead'", "-") //Output: we-love-motorhead
+//
+// SlugifySpecial doesn't support transliteration. You should use a transliteration
+// library before SlugifySpecial like github.com/rainycape/unidecode
+//
+// Example:
+//   import "github.com/rainycape/unidecode"
+//
+//   str := unidecode.Unidecode("你好, world!")
+//   strutil.SlugifySpecial(str, "-") //Output: ni-hao-world
 func SlugifySpecial(str string, delimeter string) string {
 	str, _, err := RemoveAccents(str)
 	if err != nil {
