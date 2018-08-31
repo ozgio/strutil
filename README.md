@@ -1,12 +1,12 @@
 String Utilities for Go
 =======================
-[![CircleCI](https://circleci.com/gh/ozgio/strutil.svg?style=svg)](https://circleci.com/gh/ozgio/strutil) 
+[![CircleCI](https://circleci.com/gh/ozgio/strutil.svg?style=svg)](https://circleci.com/gh/ozgio/strutil)
 [![cover.run](https://cover.run/go/github.com/ozgio/strutil.svg?style=flat&tag=golang-1.10)](https://cover.run/go?tag=golang-1.10&repo=github.com%2Fozgio%2Fstrutil)
 [![GoReportCard](https://goreportcard.com/badge/github.com/ozgio/strutil)](https://goreportcard.com/report/github.com/ozgio/strutil)
 [![GoDocs](https://godoc.org/github.com/ozgio/strutil?status.svg)](https://godoc.org/github.com/ozgio/strutil)
 
 
-"strutil" provides string functions for go applications. 
+"strutil" provides string functions for go applications.
 
 In some functions it may not work as expected in non-latin alphabets like cyrillic, chinese, etc. Also there may be some language spesific edge cases that aren't supported well. Any help on those areas would be appreciated.
 
@@ -23,7 +23,7 @@ For documentation with examples see [GoDoc](https://godoc.org/github.com/ozgio/s
 | [Box](https://godoc.org/github.com/ozgio/strutil#Box)                     | Draws a frame around the string with default chars    |
 | [Center](https://godoc.org/github.com/ozgio/strutil#Center)               | Centers the string                                    |
 | [CountWords](https://godoc.org/github.com/ozgio/strutil#CountWords)       | Count the words in the string                         |
-| [CustomBox](https://godoc.org/github.com/ozgio/strutil#CustomBox)         | Draws a frame aroud the string with specified chars   |
+| [CustomBox](https://godoc.org/github.com/ozgio/strutil#CustomBox)         | Draws a frame around the string with specified chars  |
 | [ExpandTabs](https://godoc.org/github.com/ozgio/strutil#ExpandTabs)       | Converts tabs to spaces                               |
 | [Indent](https://godoc.org/github.com/ozgio/strutil#Indent)               | Indents the string                                    |
 | [MapLines](https://godoc.org/github.com/ozgio/strutil#MapLines)           | Runs spesified function on every line of the text     |
@@ -43,27 +43,27 @@ For documentation with examples see [GoDoc](https://godoc.org/github.com/ozgio/s
 | [Splice](https://godoc.org/github.com/ozgio/strutil#Splice)               | Replaces a part of the string                         |
 | [Wordwrap](https://godoc.org/github.com/ozgio/strutil#Wordwrap)           | Wraps the lines in the text                           |
 
-## Install 
+## Install
 
 Prequsities:
 - Go 1.10+
 
-Install with 
-
-    go get github.com/ozgio/strutil
-
+Install with
+```sh
+go get github.com/ozgio/strutil
+```
 Dependencies:
-
-    go get golang.org/x/text/runes
-	go get golang.org/x/text/transform
-	go get golang.org/x/text/unicode/norm
-
+```sh
+go get golang.org/x/text/runes
+go get golang.org/x/text/transform
+go get golang.org/x/text/unicode/norm
+```
 Import
-
-    import "github.com/ozgio/strutil"
-
+```go
+import "github.com/ozgio/strutil"
+```
 ## TODO
 - Improve tests. More test cases are needed
 - Test for different languages
 - Handle "\r\n"
-- Improve whitespace and punctiation support
+- Improve whitespace and punctuation support
