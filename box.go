@@ -30,7 +30,7 @@ type Box9Slice struct {
 //   │   Hello World    │
 //   └──────────────────┘
 // </code>
-var DefaultBox9Slice Box9Slice = Box9Slice{
+var DefaultBox9Slice = Box9Slice{
 	Top:         "─",
 	TopRight:    "┐",
 	Right:       "│",
@@ -51,7 +51,7 @@ var DefaultBox9Slice Box9Slice = Box9Slice{
 //   +------------------+
 //   |   Hello World    |
 //   +------------------+
-var SimpleBox9Slice Box9Slice = Box9Slice{
+var SimpleBox9Slice = Box9Slice{
 	Top:         "-",
 	TopRight:    "+",
 	Right:       "|",
