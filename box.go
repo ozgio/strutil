@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-// Box9Slice is used by Box functions to draw frames around text content by
+// Box9Slice is used by DrawBox functions to draw frames around text content by
 // defining the corner and edge characters. See DefaultBox9Slice for an
 // example
 type Box9Slice struct {
@@ -19,18 +19,7 @@ type Box9Slice struct {
 	TopLeft     string
 }
 
-// DefaultBox9Slice defines the character object to use with "CustomBox".
-// It is used as Box9Slice object in "Box" function.
-//
-// Usage:
-// CustomBox("Hello World", 20, AligntTypeCenter, DefaultBox9Slice)
-//
-// Outputs:
-//   ┌──────────────────┐
-//   │   Hello World    │
-//   └──────────────────┘
-// </code>
-var DefaultBox9Slice = Box9Slice{
+var defaultBox9Slice = Box9Slice{
 	Top:         "─",
 	TopRight:    "┐",
 	Right:       "│",
@@ -41,17 +30,23 @@ var DefaultBox9Slice = Box9Slice{
 	TopLeft:     "┌",
 }
 
-// SimpleBox9Slice defines a character set to use with CustomBox. It uses
-// only simple ASCII chaaracters
+// DefaultBox9Slice defines the character object to use with "CustomBox".
+// It is used as Box9Slice object in "DrawBox" function.
 //
 // Usage:
-// CustomBox("Hello World", 20, AligntTypeCenter, SimpleBox9Slice)
+// DrawCustomBox("Hello World", 20, AligntTypeCenter, DefaultBox9Slice())
 //
 // Outputs:
-//   +------------------+
-//   |   Hello World    |
-//   +------------------+
-var SimpleBox9Slice = Box9Slice{
+// <code>
+//   ┌──────────────────┐
+//   │   Hello World    │
+//   └──────────────────┘
+// </code>
+func DefaultBox9Slice() Box9Slice {
+	return defaultBox9Slice
+}
+
+var simpleBox9Slice = Box9Slice{
 	Top:         "-",
 	TopRight:    "+",
 	Right:       "|",
@@ -62,15 +57,32 @@ var SimpleBox9Slice = Box9Slice{
 	TopLeft:     "+",
 }
 
-// CustomBox creates a frame with "content" in it. Characters in the frame is specified by "chars".
-// "align" sets the alignment of the content. It must be one of the strutil.AlignType* constants.
-// There are 2 premade Box9Slice objects: strutil.DefaultBox9Slice or strutil.SimpleBox9Slice.
-// CustomBox wrap the lines with strutil.WordWrap before placing it.
+// SimpleBox9Slice defines a character set to use with DrawCustomBox. It uses
+// only simple ASCII characters
 //
 // Usage:
-// CustomBox("Hello World", 20, AligntTypeCenter, SimpleBox9Slice)
-func CustomBox(content string, width int, align string, chars Box9Slice) (string, error) {
-	var buff strings.Builder
+// DrawCustomBox("Hello World", 20, AligntTypeCenter, SimpleBox9Slice(), "")
+//
+// Outputs:
+//   +------------------+
+//   |   Hello World    |
+//   +------------------+
+func SimpleBox9Slice() Box9Slice {
+	return simpleBox9Slice
+}
+
+// DrawCustomBox creates a frame with "content" in it. Characters in the frame is specified by "chars".
+// "align" sets the alignment of the content. It must be one of the strutil.AlignType* constants.
+// There are 2 premade Box9Slice objects that can be retrieved by strutil.DefaultBox9Slice() or
+// strutil.SimpleBox9Slice()
+//
+// Usage:
+// DrawCustomBox("Hello World", 20, AligntTypeCenter, SimpleBox9Slice(), "\n")
+func DrawCustomBox(content string, width int, align string, chars Box9Slice, strNewLine string) (string, error) {
+	nl := []byte(defaultNewLine)
+	if strNewLine != "" {
+		nl = []byte(strNewLine)
+	}
 
 	var topInsideWidth = width - UTF8Len(chars.TopLeft) - UTF8Len(chars.TopRight)
 	var middleInsideWidth = width - UTF8Len(chars.Left) - UTF8Len(chars.Right)
@@ -80,13 +92,22 @@ func CustomBox(content string, width int, align string, chars Box9Slice) (string
 	}
 
 	content = Wordwrap(content, middleInsideWidth, true)
+	lines := strings.Split(content, "\n")
 
+	var buff strings.Builder
+	minNumBytes := (width + 1) * (len(lines) + 2)
+	buff.Grow(minNumBytes)
+
+	//top
 	buff.WriteString(chars.TopLeft)
-	buff.WriteString(strings.Repeat(chars.Top, topInsideWidth))
+	buff.WriteString(Tile(chars.Top, topInsideWidth))
 	buff.WriteString(chars.TopRight)
-	buff.WriteString("\n")
+	buff.Write(nl)
 
-	buff.WriteString(MapLines(content, func(line string) string {
+	//middle
+	left := []byte(chars.Left)
+	right := []byte(chars.Right)
+	for _, line := range lines {
 		line = Align(line, align, middleInsideWidth)
 		if align == AlignTypeLeft {
 			line = PadRight(line, middleInsideWidth, " ")
@@ -94,23 +115,45 @@ func CustomBox(content string, width int, align string, chars Box9Slice) (string
 		if line == "" {
 			line = strings.Repeat(" ", middleInsideWidth)
 		}
-		return chars.Left + line + chars.Right
-	}))
-	buff.WriteString("\n")
 
+		buff.Write(left)
+		buff.WriteString(line)
+		buff.Write(right)
+		buff.Write(nl)
+	}
+
+	//bottom
 	buff.WriteString(chars.BottomLeft)
-	buff.WriteString(strings.Repeat(chars.Bottom, bottomInsideWidth))
+	buff.WriteString(Tile(chars.Bottom, bottomInsideWidth))
 	buff.WriteString(chars.BottomRight)
 
 	return buff.String(), nil
 }
 
-// Box creates a frame with "content" in it. DefaultBox9Slice object is used to
+// DrawBox creates a frame with "content" in it. DefaultBox9Slice object is used to
 // define characters in the frame. "align" sets the alignment of the content.
 // It must be one of the strutil.AlignType* constants.
 //
 // Usage:
-// Box("Hello World", 20, AligntTypeCenter)
-func Box(content string, width int, align string) (string, error) {
-	return CustomBox(content, width, align, DefaultBox9Slice)
+// DrawBox("Hello World", 20, AligntTypeCenter)
+func DrawBox(content string, width int, align string) (string, error) {
+	return DrawCustomBox(content, width, align, defaultBox9Slice, "\n")
+}
+
+// Tile writes the pattern until the length reaches the 'length'
+// It returns empty string if the pattern is "" or length <= 0
+func Tile(pattern string, length int) string {
+	patLen := UTF8Len(pattern)
+	if patLen == 0 {
+		return ""
+	}
+	if length <= 0 {
+		return ""
+	}
+
+	var buff strings.Builder
+	for i := 0; i < length; i += patLen {
+		buff.WriteString(pattern)
+	}
+	return Substring(buff.String(), 0, length)
 }
