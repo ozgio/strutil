@@ -19,21 +19,21 @@ func TestRemoveAccents(t *testing.T) {
 		{"yağmur", "yagmur"},
 		{"résumé", "resume"},
 		{"çınar", "cinar"},
-		{"ÄØääkkönen", "AOaakkonen"},
+		{"ÄØääkkönen", "AOEaakkonen"},
 		{"£ $ ä", "£ $ a"},
-		{"ßąàáäâãåæăćčĉęèéëêĝĥìíïîĵłľńňòóöőôõðøśșşšŝťțţŭùúüűûñÿýçżźž", "ssaaaaaaaaaccceeeeeghiiiijllnnoooooooossssstttuuuuuunyyczzz"}, //taken from github.com/epeli/underscore.string
+		{"ßąàáäâãåæăćčĉęèéëêĝĥìíïîĵłľńňòóöőôõðøśșşšŝťțţŭùúüűûñÿýçżźž", "ssaaaaaaaaeaccceeeeeghiiiijllnnoooooodjoessssstttuuuuuunyyczzz"},
 	}
 
 	for i, test := range tests {
-		output, _, _ := RemoveAccents(test.input)
+		output := RemoveAccents(test.input)
 		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
 	}
 }
 
 func ExampleRemoveAccents() {
-	output, _, _ := RemoveAccents("ßąàáäâãåæăćčĉęèéëêĝĥìíïîĵłľńňòóöőôõðøśșşšŝťțţŭùúüűûñÿýçżźž")
+	output := RemoveAccents("ßąàáäâãåæăćčĉęèéëêĝĥìíïîĵłľńňòóöőôõðøśșşšŝťțţŭùúüűûñÿýçżźž")
 	fmt.Println(output)
-	// Output: ssaaaaaaaaaccceeeeeghiiiijllnnoooooooossssstttuuuuuunyyczzz
+	// Output: ssaaaaaaaaeaccceeeeeghiiiijllnnoooooodjoessssstttuuuuuunyyczzz
 }
 
 func TestSlugifySpecial(t *testing.T) {

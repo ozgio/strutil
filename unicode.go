@@ -1,35 +1,22 @@
 package strutil
 
-import (
-	"strings"
-	"unicode"
-
-	"golang.org/x/text/runes"
-	"golang.org/x/text/transform"
-	"golang.org/x/text/unicode/norm"
-)
-
-// SpecialAccentReplacer is a string.Replacer for removing accents for special
-// characters like Turkish "ı" or "İ"
-var SpecialAccentReplacer = strings.NewReplacer(
-	"ı", "i",
-	"İ", "I",
-	"ð", "o",
-	"ø", "o",
-	"Ø", "O",
-	"ß", "ss",
-	"ł", "l",
-	"æ", "a")
+import "strings"
 
 // RemoveAccents removes accents from the letters. The resuting string only has
 // the letters from English alphabet.
-// taken from https://blog.golang.org/normalization
 // It may not be work as expected for some specific letters. Please create an
 // issue for these situations.
-func RemoveAccents(str string) (string, int, error) {
-	str = SpecialAccentReplacer.Replace(str)
-	t := transform.Chain(norm.NFD, runes.Remove(runes.In(unicode.Mn)), norm.NFC)
-	return transform.String(t, str)
+func RemoveAccents(str string) string {
+	var buff strings.Builder
+	for _, r := range str {
+		if val, ok := NormalizationMap[r]; ok {
+			buff.WriteString(val)
+		} else {
+			buff.WriteRune(r)
+		}
+	}
+
+	return buff.String()
 }
 
 // Slugify converts a string to a slug which is useful in URLs, filenames.
@@ -39,6 +26,13 @@ func RemoveAccents(str string) (string, int, error) {
 // Example:
 //   strutil.Slugify("'We löve Motörhead'") //Output: we-love-motorhead
 //
+// Normalzation is done with strutil.ReplaceAccents function using a rune replacement map
+// You can use the following code for better normalization before strutil.Slugify()
+//
+//   str := "'We löve Motörhead'"
+//   t := transform.Chain(norm.NFD, runes.Remove(runes.In(unicode.Mn)), norm.NFC)
+//   str = transform.String(t, str) //We love Motorhead
+//
 // Slugify doesn't support transliteration. You should use a transliteration
 // library before Slugify like github.com/rainycape/unidecode
 //
@@ -47,6 +41,7 @@ func RemoveAccents(str string) (string, int, error) {
 //
 //   str := unidecode.Unidecode("你好, world!")
 //   strutil.Slugify(str) //Output: ni-hao-world
+//
 func Slugify(str string) string {
 	return SlugifySpecial(str, "-")
 }
@@ -67,10 +62,7 @@ func Slugify(str string) string {
 //   str := unidecode.Unidecode("你好, world!")
 //   strutil.SlugifySpecial(str, "-") //Output: ni-hao-world
 func SlugifySpecial(str string, delimeter string) string {
-	str, _, err := RemoveAccents(str)
-	if err != nil {
-		return ""
-	}
+	str = RemoveAccents(str)
 
 	delBytes := []byte(delimeter)
 
