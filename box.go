@@ -77,8 +77,8 @@ func SimpleBox9Slice() Box9Slice {
 // strutil.SimpleBox9Slice()
 //
 // Usage:
-// DrawCustomBox("Hello World", 20, AligntTypeCenter, SimpleBox9Slice(), "\n")
-func DrawCustomBox(content string, width int, align string, chars Box9Slice, strNewLine string) (string, error) {
+// DrawCustomBox("Hello World", 20, Center, SimpleBox9Slice(), "\n")
+func DrawCustomBox(content string, width int, align AlignType, chars Box9Slice, strNewLine string) (string, error) {
 	nl := []byte(defaultNewLine)
 	if strNewLine != "" {
 		nl = []byte(strNewLine)
@@ -109,7 +109,7 @@ func DrawCustomBox(content string, width int, align string, chars Box9Slice, str
 	right := []byte(chars.Right)
 	for _, line := range lines {
 		line = Align(line, align, middleInsideWidth)
-		if align == AlignTypeLeft {
+		if align == Left {
 			line = PadRight(line, middleInsideWidth, " ")
 		}
 		if line == "" {
@@ -136,7 +136,7 @@ func DrawCustomBox(content string, width int, align string, chars Box9Slice, str
 //
 // Usage:
 // DrawBox("Hello World", 20, AligntTypeCenter)
-func DrawBox(content string, width int, align string) (string, error) {
+func DrawBox(content string, width int, align AlignType) (string, error) {
 	return DrawCustomBox(content, width, align, defaultBox9Slice, "\n")
 }
 

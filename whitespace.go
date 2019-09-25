@@ -44,8 +44,8 @@ func Pad(str string, width int, leftPad string, rightPad string) string {
 	return getPadString(padLen, leftPad) + str + getPadString(width-UTF8Len(str)-padLen, rightPad)
 }
 
-// Center centers the text by adding spaces to the left and right.
-func Center(str string, width int) string {
+// CenterText centers the text by adding spaces to the left and right.
+func CenterText(str string, width int) string {
 	return Pad(str, width, " ", " ")
 }
 
@@ -72,26 +72,28 @@ func AlignRight(str string, width int) string {
 func AlignCenter(str string, width int) string {
 	return MapLines(str, func(line string) string {
 		line = strings.Trim(line, " ")
-		return Center(line, width)
+		return CenterText(line, width)
 	})
 }
 
+type AlignType string
+
 // Align type to use with align function
 const (
-	AlignTypeCenter = "center"
-	AlignTypeLeft   = "left"
-	AlignTypeRight  = "right"
+	Center AlignType = "center"
+	Left   AlignType = "left"
+	Right  AlignType = "right"
 )
 
 // Align aligns string to the "typ" which should be one of
-//  - strutil.AlignTypeCenter
-//  - strutil.AlignTypeLeft
-//  - strutil.AlignTypeRight
-func Align(str string, typ string, width int) string {
+//  - strutil.Center
+//  - strutil.Left
+//  - strutil.Right
+func Align(str string, typ AlignType, width int) string {
 	switch typ {
-	case AlignTypeCenter:
+	case Center:
 		return AlignCenter(str, width)
-	case AlignTypeRight:
+	case Right:
 		return AlignRight(str, width)
 	default:
 		return AlignLeft(str, width)

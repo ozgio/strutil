@@ -153,13 +153,13 @@ func TestCenter(t *testing.T) {
 	}
 
 	for i, test := range tests {
-		output := Center(test.input, test.width)
+		output := CenterText(test.input, test.width)
 		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
 	}
 }
 
 func ExampleCenter() {
-	fmt.Println("'" + Center("lorem", 9) + "'")
+	fmt.Println("'" + CenterText("lorem", 9) + "'")
 	// Output: '  lorem  '
 }
 
@@ -246,12 +246,12 @@ func TestAlign(t *testing.T) {
 	tests := []struct {
 		input    string
 		width    int
-		typ      string
+		typ      AlignType
 		expected string
 	}{
-		{"  lorem  ", 10, AlignTypeLeft, "lorem     "},
-		{"  lorem  ", 10, AlignTypeRight, "     lorem"},
-		{"  lorem  ", 10, AlignTypeCenter, "  lorem   "},
+		{"  lorem  ", 10, Left, "lorem     "},
+		{"  lorem  ", 10, Right, "     lorem"},
+		{"  lorem  ", 10, Center, "  lorem   "},
 		{"  lorem  ", 10, "", "lorem     "},
 	}
 
@@ -262,7 +262,7 @@ func TestAlign(t *testing.T) {
 }
 
 func ExampleAlign() {
-	fmt.Println(Align("  lorem  \n  ipsum  ", AlignTypeRight, 10))
+	fmt.Println(Align("  lorem  \n  ipsum  ", Right, 10))
 	// Output:
 	//      lorem
 	//      ipsum
