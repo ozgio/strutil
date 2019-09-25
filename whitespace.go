@@ -5,11 +5,8 @@ import (
 )
 
 // Indent indents every line of string str with the left parameter
-// For empty strings it returns "". Empty lines are indented too.
+// Empty lines are indented too.
 func Indent(str string, left string) string {
-	if str == "" {
-		return str
-	}
 	return left + strings.Replace(str, "\n", "\n"+left, -1)
 }
 

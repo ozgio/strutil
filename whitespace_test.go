@@ -17,7 +17,7 @@ func TestIndent(t *testing.T) {
 
 		{"\t", "Lorem ipsum dolor sit amet", "\tLorem ipsum dolor sit amet"},
 		{"\t", "Lorem ipsum\ndolor sit amet\n", "\tLorem ipsum\n\tdolor sit amet\n\t"},
-		{"\t", "", ""},
+		{"\t", "", "\t"},
 		{"", "Lorem", "Lorem"},
 	}
 
