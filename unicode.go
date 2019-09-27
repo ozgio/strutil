@@ -1,6 +1,8 @@
 package strutil
 
-import "strings"
+import (
+	"strings"
+)
 
 // RemoveAccents removes accents from the letters. The resuting string only has
 // the letters from English alphabet.
@@ -8,12 +10,9 @@ import "strings"
 // issue for these situations.
 func RemoveAccents(str string) string {
 	var buff strings.Builder
+	buff.Grow(len(str))
 	for _, r := range str {
-		if val, ok := NormalizationMap[r]; ok {
-			buff.WriteString(val)
-		} else {
-			buff.WriteRune(r)
-		}
+		buff.WriteString(normalizeRune(r))
 	}
 
 	return buff.String()

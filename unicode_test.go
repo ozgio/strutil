@@ -36,6 +36,33 @@ func ExampleRemoveAccents() {
 	// Output: ssaaaaaaaaeaccceeeeeghiiiijllnnoooooodjoessssstttuuuuuunyyczzz
 }
 
+const removeAccentsTestStringAll = "ßąàáäâãåæăćčĉęèéëêĝĥìíïîĵłľńňòóöőôõðøśșşšŝťțţŭùúüóöőôõðøçżźž"
+const removeAccentsTestStringBalanced = "ssaßą àáa aaaaaaeacccëêĝhiiiijl lnnoooóö sssuuuuunyyczzuuuukðø"
+const removeAccentsTestStringNone = "ssaaaaaaaaeaccceeeeeghiiiijllnnoooooodjoessssstttuuuuuunyyczzz"
+
+func BenchmarkRemoveAccentsWorse(b *testing.B) {
+	var s string
+	for n := 0; n < b.N; n++ {
+		s = RemoveAccents(removeAccentsTestStringAll)
+	}
+	_ = s
+}
+
+func BenchmarkRemoveAccentsBalanced(b *testing.B) {
+	var s string
+	for n := 0; n < b.N; n++ {
+		s = RemoveAccents(removeAccentsTestStringBalanced)
+	}
+	_ = s
+}
+func BenchmarkRemoveAccentsBest(b *testing.B) {
+	var s string
+	for n := 0; n < b.N; n++ {
+		s = RemoveAccents(removeAccentsTestStringNone)
+	}
+	_ = s
+}
+
 func TestSlugifySpecial(t *testing.T) {
 	tests := []struct {
 		input    string
@@ -88,4 +115,12 @@ func TestSlugify(t *testing.T) {
 func ExampleSlugify() {
 	fmt.Println(Slugify("We löve Motörhead"))
 	// Output: we-love-motorhead
+}
+
+var slugifyTestString = "Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero"
+
+func BenchmarkSlugifySpecial(b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		SlugifySpecial(slugifyTestString, "-")
+	}
 }

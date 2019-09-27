@@ -63,7 +63,5 @@ Import
 import "github.com/ozgio/strutil"
 ```
 ## TODO
-- Improve tests. More test cases are needed
-- Test for different languages
 - Handle "\r\n"
 - Improve whitespace and punctuation support
