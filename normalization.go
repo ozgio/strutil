@@ -11,7 +11,7 @@
 
 package strutil
 
-// NormalizationMap is replacement map for accented letters to basic ascii letters
+// normalizeRune is replaces accented letters to basic ascii letters
 // Replacements are taken from
 // - https://github.com/sindresorhus/slugify/blob/master/replacements.js
 // - https://github.com/cocur/slugify/tree/master/Resources/rules
