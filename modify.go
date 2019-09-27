@@ -3,16 +3,20 @@ package strutil
 import (
 	"fmt"
 	"strings"
+	"unicode/utf8"
 )
 
 // Reverse reverses the string
-func Reverse(str string) string {
-	runes := []rune(str)
-	l := len(runes)
-	for i := 0; i < l/2; i++ {
-		runes[i], runes[l-i-1] = runes[l-i-1], runes[i]
+// Copied from here https://stackoverflow.com/a/20225618/153570
+func Reverse(s string) string {
+	size := len(s)
+	buf := make([]byte, size)
+	for start := 0; start < size; {
+		r, n := utf8.DecodeRuneInString(s[start:])
+		start += n
+		utf8.EncodeRune(buf[size-start:], r)
 	}
-	return string(runes)
+	return string(buf)
 }
 
 // ReplaceAllToOne replaces every string in the from to the string "to"

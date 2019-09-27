@@ -32,6 +32,16 @@ func ExampleReverse() {
 	// Output: ςείταμλεγγαπε
 }
 
+var reverseBenchmarkText = `It is not known exactly - επαγγελματίες`
+
+func BenchmarkReverse(b *testing.B) {
+	var s string
+	for n := 0; n < b.N; n++ {
+		s = Reverse(reverseBenchmarkText)
+	}
+	_ = s
+}
+
 func TestReplaceAllToOne(t *testing.T) {
 	tests := []struct {
 		input    string
