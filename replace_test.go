@@ -2,45 +2,10 @@ package strutil
 
 import (
 	"fmt"
-	"strings"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
 )
-
-func TestReverse(t *testing.T) {
-	tests := []struct {
-		input    string
-		expected string
-	}{
-		{"", ""},
-		{"abc", "cba"},
-		{"a", "a"},
-		{"çınar", "ranıç"},
-		{"    yağmur", "rumğay    "},
-		{"επαγγελματίες", "ςείταμλεγγαπε"},
-	}
-
-	for i, test := range tests {
-		output := Reverse(test.input)
-		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
-	}
-}
-
-func ExampleReverse() {
-	fmt.Println(Reverse("επαγγελματίες"))
-	// Output: ςείταμλεγγαπε
-}
-
-var reverseBenchmarkText = `It is not known exactly - επαγγελματίες`
-
-func BenchmarkReverse(b *testing.B) {
-	var s string
-	for n := 0; n < b.N; n++ {
-		s = Reverse(reverseBenchmarkText)
-	}
-	_ = s
-}
 
 func TestReplaceAllToOne(t *testing.T) {
 	tests := []struct {
@@ -64,30 +29,6 @@ func TestReplaceAllToOne(t *testing.T) {
 func ExampleReplaceAllToOne() {
 	fmt.Println(ReplaceAllToOne("lorem", []string{"lo", "em"}, "x"))
 	// Output: xrx
-}
-
-func TestMapLines(t *testing.T) {
-	tests := []struct {
-		input    string
-		fn       func(string) string
-		expected string
-	}{
-		{"", strings.ToUpper, ""},
-		{"\n\n", strings.ToUpper, "\n\n"},
-		{"Lorem\nIpsum", strings.ToUpper, "LOREM\nIPSUM"},
-	}
-
-	for i, test := range tests {
-		output := MapLines(test.input, test.fn)
-		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
-	}
-}
-
-func ExampleMapLines() {
-	fmt.Println(MapLines("Lorem\nIpsum", strings.ToUpper))
-	// Output:
-	// LOREM
-	// IPSUM
 }
 
 func TestSplice(t *testing.T) {

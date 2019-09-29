@@ -84,9 +84,9 @@ func DrawCustomBox(content string, width int, align AlignType, chars Box9Slice, 
 		nl = []byte(strNewLine)
 	}
 
-	var topInsideWidth = width - UTF8Len(chars.TopLeft) - UTF8Len(chars.TopRight)
-	var middleInsideWidth = width - UTF8Len(chars.Left) - UTF8Len(chars.Right)
-	var bottomInsideWidth = width - UTF8Len(chars.BottomLeft) - UTF8Len(chars.BottomRight)
+	var topInsideWidth = width - Len(chars.TopLeft) - Len(chars.TopRight)
+	var middleInsideWidth = width - Len(chars.Left) - Len(chars.Right)
+	var bottomInsideWidth = width - Len(chars.BottomLeft) - Len(chars.BottomRight)
 	if topInsideWidth < 1 || middleInsideWidth < 1 || bottomInsideWidth < 1 {
 		return "", errors.New("no enough width")
 	}
@@ -138,22 +138,4 @@ func DrawCustomBox(content string, width int, align AlignType, chars Box9Slice, 
 // DrawBox("Hello World", 20, AligntTypeCenter)
 func DrawBox(content string, width int, align AlignType) (string, error) {
 	return DrawCustomBox(content, width, align, defaultBox9Slice, "\n")
-}
-
-// Tile writes the pattern until the length reaches the 'length'
-// It returns empty string if the pattern is "" or length <= 0
-func Tile(pattern string, length int) string {
-	patLen := UTF8Len(pattern)
-	if patLen == 0 {
-		return ""
-	}
-	if length <= 0 {
-		return ""
-	}
-
-	var buff strings.Builder
-	for i := 0; i < length; i += patLen {
-		buff.WriteString(pattern)
-	}
-	return Substring(buff.String(), 0, length)
 }

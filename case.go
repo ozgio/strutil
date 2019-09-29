@@ -27,7 +27,7 @@ func ToSnakeCase(str string) string {
 // 	   ToCamelCase("inside dynaMIC-HTML") //Output: insideDynaMIC-HTML
 func ToCamelCase(str string) string {
 	str = strings.TrimSpace(str)
-	if UTF8Len(str) < 2 {
+	if Len(str) < 2 {
 		return str
 	}
 
@@ -52,7 +52,7 @@ func ToCamelCase(str string) string {
 //   SplitCamelCase("loremIpsum") //Output []string{"lorem", "Ipsum"}
 func SplitCamelCase(str string) []string {
 	str = strings.TrimSpace(str)
-	if UTF8Len(str) < 2 {
+	if Len(str) < 2 {
 		return []string{str}
 	}
 	var prev rune

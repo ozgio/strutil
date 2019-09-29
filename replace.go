@@ -3,21 +3,7 @@ package strutil
 import (
 	"fmt"
 	"strings"
-	"unicode/utf8"
 )
-
-// Reverse reverses the string
-// Copied from here https://stackoverflow.com/a/20225618/153570
-func Reverse(s string) string {
-	size := len(s)
-	buf := make([]byte, size)
-	for start := 0; start < size; {
-		r, n := utf8.DecodeRuneInString(s[start:])
-		start += n
-		utf8.EncodeRune(buf[size-start:], r)
-	}
-	return string(buf)
-}
 
 // ReplaceAllToOne replaces every string in the from to the string "to"
 func ReplaceAllToOne(str string, from []string, to string) string {
@@ -29,17 +15,6 @@ func ReplaceAllToOne(str string, from []string, to string) string {
 	r := strings.NewReplacer(arr...)
 
 	return r.Replace(str)
-}
-
-// MapLines runs function fn on every line of the string.
-// It splits the string by new line "\n" and runs the fn for every line and
-// returns the new string by combining these lines with "\n"
-func MapLines(str string, fn func(string) string) string {
-	arr := strings.Split(str, "\n")
-	for i := 0; i < len(arr); i++ {
-		arr[i] = fn(arr[i])
-	}
-	return strings.Join(arr, "\n")
 }
 
 // Splice insert a new string in place of the string between start and end indexes.Splice
