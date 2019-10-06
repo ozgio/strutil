@@ -72,14 +72,14 @@ func SimpleBox9Slice() Box9Slice {
 }
 
 // DrawCustomBox creates a frame with "content" in it. Characters in the frame is specified by "chars".
-// "align" sets the alignment of the content. It must be one of the strutil.AlignType* constants.
+// "align" sets the alignment of the content. It must be one of the strutil.AlignType constants.
 // There are 2 premade Box9Slice objects that can be retrieved by strutil.DefaultBox9Slice() or
 // strutil.SimpleBox9Slice()
 //
 // Usage:
 // DrawCustomBox("Hello World", 20, Center, SimpleBox9Slice(), "\n")
 func DrawCustomBox(content string, width int, align AlignType, chars Box9Slice, strNewLine string) (string, error) {
-	nl := []byte(defaultNewLine)
+	nl := []byte("\n")
 	if strNewLine != "" {
 		nl = []byte(strNewLine)
 	}
@@ -132,10 +132,10 @@ func DrawCustomBox(content string, width int, align AlignType, chars Box9Slice, 
 
 // DrawBox creates a frame with "content" in it. DefaultBox9Slice object is used to
 // define characters in the frame. "align" sets the alignment of the content.
-// It must be one of the strutil.AlignType* constants.
+// It must be one of the strutil.AlignType constants.
 //
 // Usage:
-// DrawBox("Hello World", 20, AligntTypeCenter)
+// DrawBox("Hello World", 20, Center)
 func DrawBox(content string, width int, align AlignType) (string, error) {
 	return DrawCustomBox(content, width, align, defaultBox9Slice, "\n")
 }

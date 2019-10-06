@@ -57,7 +57,7 @@ func TestDrawCustomBox(t *testing.T) {
 	}
 
 	for i, test := range tests {
-		output, err := DrawCustomBox(test.input, test.width, test.align, test9Slice)
+		output, err := DrawCustomBox(test.input, test.width, test.align, test9Slice, "\n")
 		if test.err {
 			assert.Errorf(t, err, "Test case %d is not successful, expecting error\n", i)
 		} else {
@@ -94,7 +94,7 @@ func ExampleDrawBox_long() {
 }
 
 func ExampleDrawCustomBox() {
-	output, _ := DrawCustomBox("Hello World", 20, Center, DefaultBox9Slice())
+	output, _ := DrawCustomBox("Hello World", 20, Center, DefaultBox9Slice(), "\n")
 	fmt.Println(output)
 	// Output:
 	//┌──────────────────┐
