@@ -15,10 +15,10 @@ func TestAlign(t *testing.T) {
 		typ      AlignType
 		expected string
 	}{
-		{"  lorem  ", 10, Left, "lorem     "},
+		{"  lorem  ", 10, Left, "lorem  "},
 		{"  lorem  ", 10, Right, "     lorem"},
 		{"  lorem  ", 10, Center, "  lorem   "},
-		{"  lorem  ", 10, "", "lorem     "},
+		{"  lorem  ", 10, "", "  lorem  "},
 	}
 
 	for i, test := range tests {
@@ -37,26 +37,24 @@ func ExampleAlign() {
 func TestAlignLeft(t *testing.T) {
 	tests := []struct {
 		input    string
-		width    int
 		expected string
 	}{
-		{"    lorem", 10, "lorem     "},
-		{"   lorem\n    ipsum", 10, "lorem     \nipsum     "},
-		{"  lorem  \n  ipsum  \n", 10, "lorem     \nipsum     \n          "},
+		{"    lorem", "lorem"},
+		{"   lorem\n    ipsum", "lorem\nipsum"},
+		{"  lorem  \n  ipsum  \n", "lorem  \nipsum  \n"},
 	}
 
 	for i, test := range tests {
-		output := AlignLeft(test.input, test.width)
+		output := AlignLeft(test.input)
 		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
 	}
 }
 
 func ExampleAlignLeft() {
-	aligned := AlignLeft("   lorem\n    ipsum", 10)
-	fmt.Println(strings.Replace(aligned, " ", ".", -1))
+	fmt.Println(AlignLeft("   lorem\n    ipsum"))
 	// Output:
-	// lorem.....
-	// ipsum.....
+	// lorem
+	// ipsum
 }
 
 func TestAlignRight(t *testing.T) {

@@ -13,31 +13,31 @@ const (
 	Right  AlignType = "right"
 )
 
-// Align aligns string to the "typ" which should be one of
+// Align aligns string to the "alignTo" which should be one of
 //  - strutil.Center
 //  - strutil.Left
 //  - strutil.Right
-func Align(str string, typ AlignType, width int) string {
-	switch typ {
+func Align(str string, alignTo AlignType, width int) string {
+	switch alignTo {
 	case Center:
 		return AlignCenter(str, width)
 	case Right:
 		return AlignRight(str, width)
+	case Left:
+		return AlignLeft(str)
 	default:
-		return AlignLeft(str, width)
+		return str
 	}
 }
 
-// AlignLeft aligns str to the left. It actually trims and right pads all the lines
-// in the text with space to the size of width.
-func AlignLeft(str string, width int) string {
+// AlignLeft aligns string to the left. To achieve that it just left trims every line
+func AlignLeft(str string) string {
 	return MapLines(str, func(line string) string {
-		line = strings.TrimLeft(line, " ")
-		return PadRight(line, width, " ")
+		return strings.TrimLeft(line, " ")
 	})
 }
 
-// AlignRight aligns str to the right. It actually trims and left pads all the lines
+// AlignRight aligns string to the right. It trims and left pads all the lines
 // in the text with space to the size of width.
 func AlignRight(str string, width int) string {
 	return MapLines(str, func(line string) string {
@@ -56,6 +56,7 @@ func AlignCenter(str string, width int) string {
 }
 
 // CenterText centers the text by adding spaces to the left and right.
+// It assumes the text is one line. For multiple lines use AlignCenter.
 func CenterText(str string, width int) string {
 	return Pad(str, width, " ", " ")
 }
