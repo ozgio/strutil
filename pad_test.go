@@ -7,27 +7,6 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestGetPadString(t *testing.T) {
-	tests := []struct {
-		length   int
-		input    string
-		expected string
-	}{
-
-		{0, "-", ""},
-		{4, "", ""},
-		{4, "-", "----"},
-		{4, ".-", ".-.-"},
-		{4, ".-=", ".-=."},
-		{1, ".-", "."},
-	}
-
-	for i, test := range tests {
-		output := getPadString(test.length, test.input)
-		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
-	}
-}
-
 func TestPadLeft(t *testing.T) {
 	tests := []struct {
 		width    int

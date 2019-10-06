@@ -6,10 +6,7 @@ import "strings"
 // It returns empty string if the pattern is "" or length <= 0
 func Tile(pattern string, length int) string {
 	patLen := Len(pattern)
-	if patLen == 0 {
-		return ""
-	}
-	if length <= 0 {
+	if len(pattern) == 0 || length <= 0 {
 		return ""
 	}
 
@@ -18,4 +15,5 @@ func Tile(pattern string, length int) string {
 		buff.WriteString(pattern)
 	}
 	return Substring(buff.String(), 0, length)
+
 }
