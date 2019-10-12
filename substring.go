@@ -22,7 +22,7 @@ func MustSubstring(str string, start int, end int) string {
 // Substring gets a part of the string between start and end. If end is 0,
 // end is taken as the length of the string.
 //
-// MustSubstring can be used for the cases where the boundaires are wwll known and/or panics are
+// MustSubstring can be used for the cases where the boundaries are wwll known and/or panics are
 // acceptable
 //
 // It is UTF8 safe version of using slice notations in strings.

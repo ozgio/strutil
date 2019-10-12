@@ -12,7 +12,7 @@ For documentation with examples see [GoDoc](https://godoc.org/github.com/ozgio/s
 
 
 ### Align ([Docs](https://godoc.org/github.com/ozgio/strutil#Align))
-Aligns the text to the spesified side
+Aligns the text to the specified side
 
 ```go
 strutil.Align("lorem ipsum", strutil.Right, 20) //->"        lorem ipsum" 
@@ -127,7 +127,7 @@ strutil.RemoveAccents("résumé") //-> "resume"
 ```
 
 ### ReplaceAllToOne ([Docs](https://godoc.org/github.com/ozgio/strutil#ReplaceAllToOne))
-Replace all substrings in the text with the spesified string
+Replace all substrings in the text with the specified string
 ```go
 strutil.ReplaceAllToOne("lorem ipsum", []string{"o","e","i","u"}, ".") //-> "l.r.m .ps.m"
 ```
@@ -157,7 +157,7 @@ strutil.Slugify("Lorem ipsum, dolör") //-> "lorem-ipsum-dolor"
 ```
 
 ### SlugifySpecial ([Docs](https://godoc.org/github.com/ozgio/strutil#SlugifySpecial))
-Converts the string to a slug with custom delimeter.
+Converts the string to a slug with custom delimiter.
 ```go
 strutil.SlugifySpecial("Lorem ipsum, dolör", "_") //-> "lorem_ipsum_dolor"
 ```

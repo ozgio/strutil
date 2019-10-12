@@ -27,9 +27,9 @@ func Slugify(str string) string {
 	return SlugifySpecial(str, "-")
 }
 
-// SlugifySpecial converts a string to a slug with the delimeter.
+// SlugifySpecial converts a string to a slug with the delimiter.
 // It removes accents, converts string to lower case, remove the characters
-// which are not letters or numbers and replaces spaces with the delimeter.
+// which are not letters or numbers and replaces spaces with the delimiter.
 //
 // Example:
 //   strutil.SlugifySpecial("'We löve Motörhead'", "-") //Output: we-love-motorhead
@@ -42,10 +42,10 @@ func Slugify(str string) string {
 //
 //   str := unidecode.Unidecode("你好, world!")
 //   strutil.SlugifySpecial(str, "-") //Output: ni-hao-world
-func SlugifySpecial(str string, delimeter string) string {
+func SlugifySpecial(str string, delimiter string) string {
 	str = RemoveAccents(str)
 
-	delBytes := []byte(delimeter)
+	delBytes := []byte(delimiter)
 
 	n := make([]byte, 0, len(str))
 	isPrevSpace := false
@@ -55,7 +55,7 @@ func SlugifySpecial(str string, delimeter string) string {
 			r -= 'A' - 'a'
 		}
 
-		//replace non-alphanum chars with delimeter
+		//replace non-alphanum chars with delimiter
 		switch {
 		case (r >= 'a' && r <= 'z') || (r >= '0' && r <= '9'):
 			n = append(n, byte(int8(r)))
@@ -72,8 +72,8 @@ func SlugifySpecial(str string, delimeter string) string {
 
 	//trim right
 	ln := len(n)
-	ld := len(delimeter)
-	if ln >= ld && string(n[ln-ld:]) == delimeter {
+	ld := len(delimiter)
+	if ln >= ld && string(n[ln-ld:]) == delimiter {
 		n = n[:ln-ld]
 	}
 
