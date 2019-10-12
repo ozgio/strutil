@@ -6,24 +6,24 @@ import (
 
 func BenchmarkWordWrap(b *testing.B) {
 	for n := 0; n < b.N; n++ {
-		Wordwrap(longBenchmarkText, 20, false)
+		WordWrap(longBenchmarkText, 20, false)
 	}
 }
 
 func BenchmarkWordWrap_breakLongWords(b *testing.B) {
 	for n := 0; n < b.N; n++ {
-		Wordwrap(longBenchmarkText, 20, true)
+		WordWrap(longBenchmarkText, 20, true)
 	}
 }
 
 func BenchmarkWordWrap_UTF8(b *testing.B) {
 	for n := 0; n < b.N; n++ {
-		Wordwrap(longUTF8BenchmarkText, 20, false)
+		WordWrap(longUTF8BenchmarkText, 20, false)
 	}
 }
 
 func BenchmarkWordWrap_BreakLongWordsUTF8(b *testing.B) {
 	for n := 0; n < b.N; n++ {
-		Wordwrap(longUTF8BenchmarkText, 20, true)
+		WordWrap(longUTF8BenchmarkText, 20, true)
 	}
 }

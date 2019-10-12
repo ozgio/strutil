@@ -61,7 +61,7 @@ var simpleBox9Slice = Box9Slice{
 // only simple ASCII characters
 //
 // Usage:
-// DrawCustomBox("Hello World", 20, AligntTypeCenter, SimpleBox9Slice(), "")
+//   DrawCustomBox("Hello World", 20, Center, SimpleBox9Slice(), "\n")
 //
 // Outputs:
 //   +------------------+
@@ -77,7 +77,12 @@ func SimpleBox9Slice() Box9Slice {
 // strutil.SimpleBox9Slice()
 //
 // Usage:
-// DrawCustomBox("Hello World", 20, Center, SimpleBox9Slice(), "\n")
+//   DrawCustomBox("Hello World", 20, Center, SimpleBox9Slice(), "\n")
+//
+// Outputs:
+//   +------------------+
+//   |   Hello World    |
+//   +------------------+
 func DrawCustomBox(content string, width int, align AlignType, chars Box9Slice, strNewLine string) (string, error) {
 	nl := []byte("\n")
 	if strNewLine != "" {
@@ -91,7 +96,7 @@ func DrawCustomBox(content string, width int, align AlignType, chars Box9Slice, 
 		return "", errors.New("no enough width")
 	}
 
-	content = Wordwrap(content, middleInsideWidth, true)
+	content = WordWrap(content, middleInsideWidth, true)
 	lines := strings.Split(content, "\n")
 
 	var buff strings.Builder
@@ -135,7 +140,12 @@ func DrawCustomBox(content string, width int, align AlignType, chars Box9Slice, 
 // It must be one of the strutil.AlignType constants.
 //
 // Usage:
-// DrawBox("Hello World", 20, Center)
+//   DrawBox("Hello World", 20, Center)
+//
+// Outputs:
+//   ┌──────────────────┐
+//   │   Hello World    │
+//   └──────────────────┘
 func DrawBox(content string, width int, align AlignType) (string, error) {
 	return DrawCustomBox(content, width, align, defaultBox9Slice, "\n")
 }

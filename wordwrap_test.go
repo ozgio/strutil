@@ -39,14 +39,14 @@ func TestWordwrap(t *testing.T) {
 	}
 
 	for i, test := range tests {
-		output := Wordwrap(test.input, test.colLen, test.breakLongWords)
+		output := WordWrap(test.input, test.colLen, test.breakLongWords)
 		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
 	}
 
 }
 
 func ExampleWordwrap() {
-	fmt.Println(Wordwrap("Lorem ipsum, dolor sit amet.", 15, false))
+	fmt.Println(WordWrap("Lorem ipsum, dolor sit amet.", 15, false))
 	// Output:
 	// Lorem ipsum,
 	// dolor sit amet.
