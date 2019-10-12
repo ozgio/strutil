@@ -36,31 +36,10 @@ Aligns the text to the right
 strutil.AlignRight("lorem\nipsum", 10) //-> "     lorem\n     ipsum" 
 ```
 
-### ToSnakeCase  ([Docs](https://godoc.org/github.com/ozgio/strutil#ToSnakeCase))
-Converts the string to snake_case 
+### CountWords ([Docs](https://godoc.org/github.com/ozgio/strutil#CountWords))
+Counts the words
 ```go
-strutil.ToSnakeCase("Snake Case") //-> "snake_case"
-```
-
-### ToCamelCase  ([Docs](https://godoc.org/github.com/ozgio/strutil#ToCamelCase))
-Converts the string to camelCase 
-```go
-strutil.ToCamelCase("Camel Case") //-> "camelCase"
-```
-
-### SplitCamelCase  ([Docs](https://godoc.org/github.com/ozgio/strutil#SplitCamelCase))
-Splits the words in a camelCase string
-```go
-strutil.SplitCamelCase("loremIpsum") //-> []string{"lorem", "Ipsum"}
-```
-
-### DrawCustomBox ([Docs](https://godoc.org/github.com/ozgio/strutil#DrawCustomBox))
-Draws a frame around the string with custom character set
-```go
-strutil.DrawCustomBox("Hello World", 20, strutil.Center, strutil.SimpleBox9Slice(), "\n")
-//┌──────────────────┐
-//│   Hello World    │
-//└──────────────────┘
+strutil.CountWords("Lorem ipsum, dolor sit amet") //-> "5"
 ```
 
 ### DrawBox ([Docs](https://godoc.org/github.com/ozgio/strutil#DrawBox))
@@ -72,6 +51,14 @@ strutil.DrawBox("Hello World", 20, strutil.Center)
 //└──────────────────┘
 ```
 
+### DrawCustomBox ([Docs](https://godoc.org/github.com/ozgio/strutil#DrawCustomBox))
+Draws a frame around the string with custom character set
+```go
+strutil.DrawCustomBox("Hello World", 20, strutil.Center, strutil.SimpleBox9Slice(), "\n")
+//┌──────────────────┐
+//│   Hello World    │
+//└──────────────────┘
+```
 
 ### ExpandTabs  ([Docs](https://godoc.org/github.com/ozgio/strutil#ExpandTabs))
 Converts tabs to the spaces
@@ -91,16 +78,16 @@ Checks if all the characters in string are in standard ASCII table
 strutil.IsASCII("lorem\nipsum") //-> true
 ```
 
+### Len ([Docs](https://godoc.org/github.com/ozgio/strutil#Len))
+Alias of utf8.RuneCountInString which returns the number of runes in string
+```go
+strutil.Len("böt") //-> "3"
+```
+
 ### MapLines ([Docs](https://godoc.org/github.com/ozgio/strutil#MapLines))
 Runs function fn on every line of the string
 ```go
 strutil.MapLines("   lorem      \n    ipsum      ", strings.TrimSpace) //-> "lorem\nipsum"
-```
-
-### SplitAndMap ([Docs](https://godoc.org/github.com/ozgio/strutil#SplitAndMap))
-Splits the string and runs the function fn on every part
-```go
-strutil.MapLines("lorem-ipsum-dolor", "-",  strutil.Reverse) //-> "merol\nmuspi\nrolod"
 ```
 
 ### OSNewLine ([Docs](https://godoc.org/github.com/ozgio/strutil#OSNewLine))
@@ -145,16 +132,22 @@ Replace all substrings in the text with the spesified string
 strutil.ReplaceAllToOne("lorem ipsum", []string{"o","e","i","u"}, ".") //-> "l.r.m .ps.m"
 ```
 
+### Reverse ([Docs](https://godoc.org/github.com/ozgio/strutil#Reverse))
+Reverses the string
+```go
+strutil.Reverse("lorem") //-> "merol"
+```
+
 ### Splice ([Docs](https://godoc.org/github.com/ozgio/strutil#Splice))
 Replaces a part of the string 
 ```go
 strutil.Splice("lorem", "-x-", 2, 3) //-> "lo-x-em"
 ```
 
-### Reverse ([Docs](https://godoc.org/github.com/ozgio/strutil#Reverse))
-Reverses the string
+### SplitAndMap ([Docs](https://godoc.org/github.com/ozgio/strutil#SplitAndMap))
+Splits the string and runs the function fn on every part
 ```go
-strutil.Reverse("lorem") //-> "merol"
+strutil.MapLines("lorem-ipsum-dolor", "-",  strutil.Reverse) //-> "merol\nmuspi\nrolod"
 ```
 
 ### Slugify ([Docs](https://godoc.org/github.com/ozgio/strutil#Slugify))
@@ -169,16 +162,22 @@ Converts the string to a slug with custom delimeter.
 strutil.SlugifySpecial("Lorem ipsum, dolör", "_") //-> "lorem_ipsum_dolor"
 ```
 
-### Substring ([Docs](https://godoc.org/github.com/ozgio/strutil#Substring))
-Gets a part of the string
+### SplitCamelCase  ([Docs](https://godoc.org/github.com/ozgio/strutil#SplitCamelCase))
+Splits the words in a camelCase string
 ```go
-strutil.Substring("lorem", 0, 1) //-> "l"
+strutil.SplitCamelCase("loremIpsum") //-> []string{"lorem", "Ipsum"}
 ```
 
-### SafeSubstring ([Docs](https://godoc.org/github.com/ozgio/strutil#SafeSubstring))
+### Substring ([Docs](https://godoc.org/github.com/ozgio/strutil#SafeSubstring))
 Gets a part of the string without panics
 ```go
 strutil.SafeSubstring("lorem", 0, 1) //-> "l"
+```
+
+### MustSubstring ([Docs](https://godoc.org/github.com/ozgio/strutil#Substring))
+Gets a part of the string
+```go
+strutil.Substring("lorem", 0, 1) //-> "l"
 ```
 
 ### Summary ([Docs](https://godoc.org/github.com/ozgio/strutil#Summary))
@@ -193,16 +192,16 @@ Repeats the pattern until the result reaches the 'length'
 strutil.Tile("-৹", 4) //-> "-৹-৹"
 ```
 
-### Len ([Docs](https://godoc.org/github.com/ozgio/strutil#Len))
-Alias of utf8.RuneCountInString which returns the number of runes in string
+### ToSnakeCase  ([Docs](https://godoc.org/github.com/ozgio/strutil#ToSnakeCase))
+Converts the string to snake_case 
 ```go
-strutil.Len("böt") //-> "3"
+strutil.ToSnakeCase("Snake Case") //-> "snake_case"
 ```
 
-### CountWords ([Docs](https://godoc.org/github.com/ozgio/strutil#CountWords))
-Counts the words
+### ToCamelCase  ([Docs](https://godoc.org/github.com/ozgio/strutil#ToCamelCase))
+Converts the string to camelCase 
 ```go
-strutil.CountWords("Lorem ipsum, dolor sit amet") //-> "5"
+strutil.ToCamelCase("Camel Case") //-> "camelCase"
 ```
 
 ### Words ([Docs](https://godoc.org/github.com/ozgio/strutil#Words))
