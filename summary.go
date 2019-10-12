@@ -1,9 +1,13 @@
 package strutil
 
-import "strings"
+import (
+	"strings"
+	"unicode"
+)
 
 //Summary cuts the string to a new length and adds the "end" to it
-//It only breaks up the words by spaces
+//It only breaks up the words by spaces.  See "unicode.IsSpace" for which characters are accepted
+//as spaces
 func Summary(str string, length int, end string) string {
 	if str == "" || length <= 0 {
 		return str
@@ -16,7 +20,7 @@ func Summary(str string, length int, end string) string {
 		switch {
 		case r == newLine:
 			return str[:i] + end
-		case r == ' ':
+		case unicode.IsSpace(r):
 			lastSpaceIndex = i
 		}
 

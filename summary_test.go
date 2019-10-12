@@ -17,6 +17,8 @@ func TestSummary(t *testing.T) {
 		{15, "...", "", ""},
 		{0, "...", "Lorem ipsum dolor sit amet", "Lorem ipsum dolor sit amet"},
 		{12, "...", "Lorem ipsum dolor sit amet", "Lorem ipsum..."},
+		{12, "...", "Lorem\nipsum dolor sit amet", "Lorem..."},
+		{12, "...", "Lorem\tipsum\tdolor sit amet", "Lorem\tipsum..."},
 		{10, "...", "Lorem ipsum dolor sit amet", "Lorem..."},
 		{10, "...", "Lorem\nipsum dolor sit amet", "Lorem..."},
 		{15, "...", "Lorem ipsum", "Lorem ipsum"},
