@@ -4,26 +4,29 @@ import (
 	"fmt"
 )
 
-// Substring gets a part of the string between start and end. If end is 0,
+// MustSubstring gets a part of the string between start and end. If end is 0,
 // end is taken as the length of the string.
 //
 // It is UTF8 safe version of using slice notations in strings. It panics
 // when the indexes are out of range. String length can be get with
-// UTF8Len function before using Substring. You can use SafeSubstring if
+// UTF8Len function before using Substring. You can use "Substring" if
 // you prefer errors to panics.
-func Substring(str string, start int, end int) string {
-	res, err := SafeSubstring(str, start, end)
+func MustSubstring(str string, start int, end int) string {
+	res, err := Substring(str, start, end)
 	if err != nil {
 		panic(err)
 	}
 	return res
 }
 
-// SafeSubstring gets a part of the string between start and end. If end is 0,
+// Substring gets a part of the string between start and end. If end is 0,
 // end is taken as the length of the string.
 //
+// MustSubstring can be used for the cases where the boundaires are wwll known and/or panics are
+// acceptable
+//
 // It is UTF8 safe version of using slice notations in strings.
-func SafeSubstring(str string, start int, end int) (string, error) {
+func Substring(str string, start int, end int) (string, error) {
 	if start < 0 || start >= len(str) {
 		return "", fmt.Errorf("start (%d) is out of range", start)
 	}
