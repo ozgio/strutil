@@ -45,7 +45,7 @@ func TestWordwrap(t *testing.T) {
 
 }
 
-func ExampleWordwrap() {
+func ExampleWordWrap() {
 	fmt.Println(WordWrap("Lorem ipsum, dolor sit amet.", 15, false))
 	// Output:
 	// Lorem ipsum,
