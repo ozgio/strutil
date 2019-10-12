@@ -6,7 +6,6 @@ jobs:
     working_directory: /go/src/github.com/ozgio/strutil
     steps:
       - checkout
-      - run: go get golang.org/x/text
       - run: go get github.com/stretchr/testify/assert
       - run: go test .
       - run: go vet .
