@@ -14,6 +14,5 @@ func Tile(pattern string, length int) string {
 	for i := 0; i < length; i += patLen {
 		buff.WriteString(pattern)
 	}
-	return Substring(buff.String(), 0, length)
-
+	return MustSubstring(buff.String(), 0, length)
 }

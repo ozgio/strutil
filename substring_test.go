@@ -7,7 +7,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestSubstring(t *testing.T) {
+func TestMustSubstring(t *testing.T) {
 	tests := []struct {
 		input     string
 		start     int
@@ -31,22 +31,22 @@ func TestSubstring(t *testing.T) {
 	for i, test := range tests {
 		if test.mustPanic {
 			assert.Panicsf(t, func() {
-				_ = Substring(test.input, test.start, test.end)
+				_ = MustSubstring(test.input, test.start, test.end)
 			}, "Test case %d is not successful\n", i)
 		} else {
-			output := Substring(test.input, test.start, test.end)
+			output := MustSubstring(test.input, test.start, test.end)
 			assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
 		}
 	}
 
 }
 
-func ExampleSubstring() {
-	fmt.Println(Substring("Υπάρχουν", 1, 4))
+func ExampleMustSubstring() {
+	fmt.Println(MustSubstring("Υπάρχουν", 1, 4))
 	// Output: πάρ
 }
 
-func ExampleSubstring_tillTheEnd() {
-	fmt.Println(Substring("Υπάρχουν", 1, 0))
+func ExampleMustSubstring_tillTheEnd() {
+	fmt.Println(MustSubstring("Υπάρχουν", 1, 0))
 	// Output: πάρχουν
 }
