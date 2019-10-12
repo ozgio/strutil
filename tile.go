@@ -2,7 +2,7 @@ package strutil
 
 import "strings"
 
-// Tile writes the pattern until the length reaches the 'length'
+// Tile repeats the pattern until the result reaches the 'length'
 // It returns empty string if the pattern is "" or length <= 0
 func Tile(pattern string, length int) string {
 	patLen := Len(pattern)

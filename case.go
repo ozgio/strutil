@@ -5,8 +5,8 @@ import (
 	"unicode"
 )
 
-// ToSnakeCase converts str into snake_case formatted string. In the process it
-// trims the string and the converts characters into lowercase. Only space " "
+// ToSnakeCase converts string into snake_case formatted string. In the process it
+// trims the string and then converts characters into lowercase. Only space " "
 // character is converted into underscore "_". If you have other characters
 // you should convert them into spaces before calling ToSnakeCase
 //
@@ -17,7 +17,7 @@ func ToSnakeCase(str string) string {
 	return strings.Replace(str, " ", "_", -1)
 }
 
-// ToCamelCase converts str into camelCase formatted string after trimming it.
+// ToCamelCase converts string into camelCase formatted string after trimming it.
 // It doesn't change the cases of letters except the first letters of the words.
 // ToCamelCase also doesn't remove punctions or such characters and it separates
 // words only with " "

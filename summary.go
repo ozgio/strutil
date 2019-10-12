@@ -3,7 +3,7 @@ package strutil
 import "strings"
 
 //Summary cuts the string to a new length and adds the "end" to it
-//It only break up the words by spaces
+//It only breaks up the words by spaces
 func Summary(str string, length int, end string) string {
 	if str == "" || length <= 0 {
 		return str

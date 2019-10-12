@@ -4,6 +4,7 @@ import (
 	"strings"
 )
 
+//AlignType text align variable like center or left
 type AlignType string
 
 // Align type to use with align function
@@ -14,9 +15,9 @@ const (
 )
 
 // Align aligns string to the "alignTo" which should be one of
-//  - strutil.Center
-//  - strutil.Left
-//  - strutil.Right
+// - strutil.Center
+// - strutil.Left
+// - strutil.Right
 func Align(str string, alignTo AlignType, width int) string {
 	switch alignTo {
 	case Center:
@@ -30,7 +31,7 @@ func Align(str string, alignTo AlignType, width int) string {
 	}
 }
 
-// AlignLeft aligns string to the left. To achieve that it just left trims every line
+// AlignLeft aligns string to the left. To achieve that it left trims every line.
 func AlignLeft(str string) string {
 	return MapLines(str, func(line string) string {
 		return strings.TrimLeft(line, " ")

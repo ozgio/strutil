@@ -3,7 +3,7 @@ package strutil
 import "strings"
 
 // MapLines runs function fn on every line of the string.
-// It splits the string by new line "\n" and runs the fn for every line and
+// It splits the string by new line character ("\n"), then runs 'fn' for every line and
 // returns the new string by combining these lines with "\n"
 func MapLines(str string, fn func(string) string) string {
 	return SplitAndMap(str, "\n", fn)
