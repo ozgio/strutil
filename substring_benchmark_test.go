@@ -36,12 +36,12 @@ func BenchmarkWordsUTF8(b *testing.B) {
 
 func BenchmarkSubstringShort(b *testing.B) {
 	for n := 0; n < b.N; n++ {
-		Substring("lorem ipsum", 1, 3)
+		Substring("lorem ipsum", 1, 3) //nolint: errcheck
 	}
 }
 
 func BenchmarkSubstringLong(b *testing.B) {
 	for n := 0; n < b.N; n++ {
-		Substring(longUTF8BenchmarkText, 16, 24)
+		Substring(longUTF8BenchmarkText, 16, 24) //nolint: errcheck
 	}
 }

@@ -6,7 +6,6 @@ import (
 )
 
 var newLine = rune('\n')
-var space = rune(' ')
 
 // WordWrap wraps the given string str based on colLen as max line width.
 // if breakLongWords is true, it breaks the words which are longer than colLen.
@@ -25,12 +24,10 @@ func WordWrap(str string, colLen int, breakLongWords bool) string {
 	var line strBuffer
 	var word strBuffer
 
-	runeIndex := -1
 	var runeWritten bool
 	var r rune
 
 	for _, r = range str {
-		runeIndex++
 		runeWritten = false
 
 		if r == newLine {
