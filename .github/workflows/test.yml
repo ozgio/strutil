@@ -5,7 +5,7 @@ jobs:
     strategy:
       matrix:
         go-version: [1.15.x]
-        os: [ubuntu-latest, macos-latest, windows-latest]
+        os: [ubuntu-latest, windows-latest]
     runs-on: ${{ matrix.os }}
     steps:
     - name: Install Go
@@ -17,6 +17,6 @@ jobs:
     - name: Test
       run: go test ./...
     - name: golangci-lint
-        uses: golangci/golangci-lint-action@v2
-        with:
-          version: v1.29
+      uses: golangci/golangci-lint-action@v2
+      with:
+        version: v1.29
