@@ -3,8 +3,6 @@ package strutil
 import (
 	"fmt"
 	"testing"
-
-	"github.com/stretchr/testify/assert"
 )
 
 func TestPadLeft(t *testing.T) {
@@ -27,7 +25,7 @@ func TestPadLeft(t *testing.T) {
 
 	for i, test := range tests {
 		output := PadLeft(test.input, test.width, test.pad)
-		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
+		Assert(t, test.expected, output, "Test case %d is not successful\n", i)
 	}
 }
 
@@ -55,7 +53,7 @@ func TestPadRight(t *testing.T) {
 
 	for i, test := range tests {
 		output := PadRight(test.input, test.width, test.pad)
-		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
+		Assert(t, test.expected, output, "Test case %d is not successful\n", i)
 	}
 }
 
@@ -81,7 +79,7 @@ func TestPad(t *testing.T) {
 
 	for i, test := range tests {
 		output := Pad(test.input, test.width, test.leftPad, test.rightPad)
-		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
+		Assert(t, test.expected, output, "Test case %d is not successful\n", i)
 	}
 }
 

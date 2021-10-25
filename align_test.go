@@ -4,8 +4,6 @@ import (
 	"fmt"
 	"strings"
 	"testing"
-
-	"github.com/stretchr/testify/assert"
 )
 
 func TestAlign(t *testing.T) {
@@ -23,7 +21,7 @@ func TestAlign(t *testing.T) {
 
 	for i, test := range tests {
 		output := Align(test.input, test.typ, test.width)
-		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
+		Assert(t, test.expected, output, "Test case %d is not successful\n", i)
 	}
 }
 
@@ -46,7 +44,7 @@ func TestAlignLeft(t *testing.T) {
 
 	for i, test := range tests {
 		output := AlignLeft(test.input)
-		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
+		Assert(t, test.expected, output, "Test case %d is not successful\n", i)
 	}
 }
 
@@ -71,7 +69,7 @@ func TestAlignRight(t *testing.T) {
 
 	for i, test := range tests {
 		output := AlignRight(test.input, test.width)
-		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
+		Assert(t, test.expected, output, "Test case %d is not successful\n", i)
 	}
 }
 
@@ -99,7 +97,7 @@ func TestAlignCenter(t *testing.T) {
 
 	for i, test := range tests {
 		output := AlignCenter(test.input, test.width)
-		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
+		Assert(t, test.expected, output, "Test case %d is not successful\n", i)
 	}
 }
 
@@ -126,7 +124,7 @@ func TestCenter(t *testing.T) {
 
 	for i, test := range tests {
 		output := CenterText(test.input, test.width)
-		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
+		Assert(t, test.expected, output, "Test case %d is not successful\n", i)
 	}
 }
 

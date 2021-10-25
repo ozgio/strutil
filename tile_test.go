@@ -2,8 +2,6 @@ package strutil
 
 import (
 	"testing"
-
-	"github.com/stretchr/testify/assert"
 )
 
 func TestTile(t *testing.T) {
@@ -37,7 +35,7 @@ func TestTile(t *testing.T) {
 
 	for i, test := range tests {
 		output := Tile(test.pattern, test.length)
-		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
+		Assert(t, test.expected, output, "Test case %d is not successful\n", i)
 	}
 }
 

@@ -3,8 +3,6 @@ package strutil
 import (
 	"fmt"
 	"testing"
-
-	"github.com/stretchr/testify/assert"
 )
 
 func TestRemoveAccents(t *testing.T) {
@@ -26,7 +24,7 @@ func TestRemoveAccents(t *testing.T) {
 
 	for i, test := range tests {
 		output := RemoveAccents(test.input)
-		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
+		Assert(t, test.expected, output, "Test case %d is not successful\n", i)
 	}
 }
 

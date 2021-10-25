@@ -3,8 +3,6 @@ package strutil
 import (
 	"fmt"
 	"testing"
-
-	"github.com/stretchr/testify/assert"
 )
 
 func TestIndent(t *testing.T) {
@@ -22,7 +20,7 @@ func TestIndent(t *testing.T) {
 
 	for i, test := range tests {
 		output := Indent(test.input, test.left)
-		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
+		Assert(t, test.expected, output, "Test case %d is not successful\n", i)
 
 	}
 }

@@ -3,8 +3,6 @@ package strutil
 import (
 	"fmt"
 	"testing"
-
-	"github.com/stretchr/testify/assert"
 )
 
 func TestReplaceAllToOne(t *testing.T) {
@@ -22,7 +20,7 @@ func TestReplaceAllToOne(t *testing.T) {
 
 	for i, test := range tests {
 		output := ReplaceAllToOne(test.input, test.from, test.to)
-		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
+		Assert(t, test.expected, output, "Test case %d is not successful\n", i)
 	}
 }
 
@@ -52,12 +50,12 @@ func TestSplice(t *testing.T) {
 
 	for i, test := range tests {
 		if test.mustPanic {
-			assert.Panicsf(t, func() {
+			AssertPanics(t, func() {
 				_ = Splice(test.input, test.newStr, test.start, test.end)
 			}, "Test case %d is not successful\n", i)
 		} else {
 			output := Splice(test.input, test.newStr, test.start, test.end)
-			assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
+			Assert(t, test.expected, output, "Test case %d is not successful\n", i)
 		}
 	}
 }

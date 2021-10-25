@@ -3,8 +3,6 @@ package strutil
 import (
 	"fmt"
 	"testing"
-
-	"github.com/stretchr/testify/assert"
 )
 
 var randCounter = 0
@@ -38,7 +36,7 @@ func TestRandom(t *testing.T) {
 	for i, test := range tests {
 		randCounter = 0
 		output, _ := Random(test.input, test.length)
-		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
+		Assert(t, test.expected, output, "Test case %d is not successful\n", i)
 	}
 	randReader = oldReader
 }

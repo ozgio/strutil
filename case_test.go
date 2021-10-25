@@ -3,8 +3,6 @@ package strutil
 import (
 	"fmt"
 	"testing"
-
-	"github.com/stretchr/testify/assert"
 )
 
 func TestToSnakeCase(t *testing.T) {
@@ -21,7 +19,7 @@ func TestToSnakeCase(t *testing.T) {
 
 	for i, test := range tests {
 		output := ToSnakeCase(test.input)
-		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
+		Assert(t, test.expected, output, "Test case %d is not successful\n", i)
 	}
 }
 
@@ -45,7 +43,7 @@ func TestToCamelCase(t *testing.T) {
 
 	for i, test := range tests {
 		output := ToCamelCase(test.input)
-		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
+		Assert(t, test.expected, output, "Test case %d is not successful\n", i)
 	}
 }
 
@@ -75,7 +73,7 @@ func TestSplitCamelCase(t *testing.T) {
 
 	for i, test := range tests {
 		output := SplitCamelCase(test.input)
-		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
+		Assert(t, test.expected, output, "Test case %d is not successful\n", i)
 	}
 }
 

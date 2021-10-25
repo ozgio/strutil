@@ -3,8 +3,6 @@ package strutil
 import (
 	"fmt"
 	"testing"
-
-	"github.com/stretchr/testify/assert"
 )
 
 func TestSlugifySpecial(t *testing.T) {
@@ -24,7 +22,7 @@ func TestSlugifySpecial(t *testing.T) {
 
 	for i, test := range tests {
 		output := SlugifySpecial(test.input, "-")
-		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
+		Assert(t, test.expected, output, "Test case %d is not successful\n", i)
 	}
 }
 
@@ -52,7 +50,7 @@ func TestSlugify(t *testing.T) {
 
 	for i, test := range tests {
 		output := Slugify(test.input)
-		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
+		Assert(t, test.expected, output, "Test case %d is not successful\n", i)
 	}
 }
 

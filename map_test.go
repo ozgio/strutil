@@ -4,8 +4,6 @@ import (
 	"fmt"
 	"strings"
 	"testing"
-
-	"github.com/stretchr/testify/assert"
 )
 
 func TestMapLines(t *testing.T) {
@@ -21,7 +19,7 @@ func TestMapLines(t *testing.T) {
 
 	for i, test := range tests {
 		output := MapLines(test.input, test.fn)
-		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
+		Assert(t, test.expected, output, "Test case %d is not successful\n", i)
 	}
 }
 

@@ -3,8 +3,6 @@ package strutil
 import (
 	"fmt"
 	"testing"
-
-	"github.com/stretchr/testify/assert"
 )
 
 func TestWordwrap(t *testing.T) {
@@ -40,7 +38,7 @@ func TestWordwrap(t *testing.T) {
 
 	for i, test := range tests {
 		output := WordWrap(test.input, test.colLen, test.breakLongWords)
-		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
+		Assert(t, test.expected, output, "Test case %d is not successful\n", i)
 	}
 
 }

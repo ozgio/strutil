@@ -3,8 +3,6 @@ package strutil
 import (
 	"fmt"
 	"testing"
-
-	"github.com/stretchr/testify/assert"
 )
 
 func TestCountWords(t *testing.T) {
@@ -22,7 +20,7 @@ func TestCountWords(t *testing.T) {
 
 	for i, test := range tests {
 		output := CountWords(test.input)
-		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
+		Assert(t, test.expected, output, "Test case %d is not successful\n", i)
 	}
 }
 
@@ -49,6 +47,6 @@ func TestWords(t *testing.T) {
 	for i, test := range tests {
 		//FIXME add real output check
 		output := Words(test.input)
-		assert.Equalf(t, test.expected, len(output), "Test case %d is not successful\n", i)
+		Assert(t, test.expected, len(output), "Test case %d is not successful\n", i)
 	}
 }

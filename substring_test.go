@@ -3,8 +3,6 @@ package strutil
 import (
 	"fmt"
 	"testing"
-
-	"github.com/stretchr/testify/assert"
 )
 
 func TestMustSubstring(t *testing.T) {
@@ -30,12 +28,12 @@ func TestMustSubstring(t *testing.T) {
 
 	for i, test := range tests {
 		if test.mustPanic {
-			assert.Panicsf(t, func() {
+			AssertPanics(t, func() {
 				_ = MustSubstring(test.input, test.start, test.end)
 			}, "Test case %d is not successful\n", i)
 		} else {
 			output := MustSubstring(test.input, test.start, test.end)
-			assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
+			Assert(t, test.expected, output, "Test case %d is not successful\n", i)
 		}
 	}
 

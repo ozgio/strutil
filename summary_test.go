@@ -3,8 +3,6 @@ package strutil
 import (
 	"fmt"
 	"testing"
-
-	"github.com/stretchr/testify/assert"
 )
 
 func TestSummary(t *testing.T) {
@@ -29,7 +27,7 @@ func TestSummary(t *testing.T) {
 
 	for i, test := range tests {
 		output := Summary(test.input, test.colLen, test.end)
-		assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
+		Assert(t, test.expected, output, "Test case %d is not successful\n", i)
 	}
 }
 

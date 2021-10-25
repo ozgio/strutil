@@ -3,8 +3,6 @@ package strutil
 import (
 	"fmt"
 	"testing"
-
-	"github.com/stretchr/testify/assert"
 )
 
 func TestDrawBox(t *testing.T) {
@@ -26,9 +24,9 @@ func TestDrawBox(t *testing.T) {
 	for i, test := range tests {
 		output, err := DrawBox(test.input, test.width, test.align)
 		if test.err {
-			assert.Errorf(t, err, "Test case %d is not successful\n", i)
+			Assert(t, true, err != nil, "Test case %d is not successful, expecting err while we have %v\n", i, err)
 		} else {
-			assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
+			Assert(t, test.expected, output, "Test case %d is not successful\n", i)
 		}
 	}
 }
@@ -59,9 +57,9 @@ func TestDrawCustomBox(t *testing.T) {
 	for i, test := range tests {
 		output, err := DrawCustomBox(test.input, test.width, test.align, test9Slice, "\n")
 		if test.err {
-			assert.Errorf(t, err, "Test case %d is not successful, expecting error\n", i)
+			Assert(t, true, err != nil, "Test case %d is not successful, expecting error while we have %v\n", i, err)
 		} else {
-			assert.Equalf(t, test.expected, output, "Test case %d is not successful\n", i)
+			Assert(t, test.expected, output, "Test case %d is not successful\n", i)
 		}
 	}
 }
