@@ -1,5 +1,6 @@
 String Utilities for Go
 =======================
+[![Tests](https://github.com/ozgio/strutil/actions/workflows/test.yml/badge.svg)](https://github.com/ozgio/strutil/actions/workflows/test.yml)
 [![GoReportCard](https://goreportcard.com/badge/github.com/ozgio/strutil)](https://goreportcard.com/report/github.com/ozgio/strutil)
 [![GoDocs](https://godoc.org/github.com/ozgio/strutil?status.svg)](https://godoc.org/github.com/ozgio/strutil)
 
